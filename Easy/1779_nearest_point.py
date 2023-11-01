@@ -55,9 +55,9 @@ class Solution:
             >>> s.nearestValidPoint(3, 4, [[2,3]])
             -1
         """
-        min_dist, ans = 999, -1 #Derived from abs(104-1) + abs(104-1)
+        min_dist, ans = float("inf"), -1
         for i, (a, b) in enumerate(points):
-            if a == x or b == y: #First Condition: Valid if it shares the same X or Y as your location
+            if a == x or b == y: #Valid if it shares the same X or Y as your location
                 cal_dist = abs(a - x) + abs(b - y)
                 if cal_dist < min_dist:
                     min_dist, ans = cal_dist, i
