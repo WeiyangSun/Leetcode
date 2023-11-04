@@ -37,12 +37,40 @@ s consists only of printable ASCII characters.
 
 class SimpleSolution:
     def is_palindrome(self, s: str) -> bool:
+        """
+        # Example 1
+        >>> sol = ConstantSolution()
+        >>> sol.is_palindrome("A man, a plan, a canal: Panama")
+        True
+
+        # Example 2
+        >>> sol.is_palindrome("race a car")
+        False
+
+        # Example 3
+        >>> sol.is_palindrome("")
+        True
+        """
         s = [i for i in s.lower() if i.isalnum()]
         return s == s[::-1]  # This is o(n) - depends on how long the string is
 
 
 class ConstantSolution:
     def is_palindrome(self, s: str) -> bool:
+        """
+        # Example 1
+        >>> sol = ConstantSolution()
+        >>> sol.is_palindrome("A man, a plan, a canal: Panama")
+        True
+
+        # Example 2
+        >>> sol.is_palindrome("race a car")
+        False
+
+        # Example 3
+        >>> sol.is_palindrome("")
+        True
+        """
         i, j = 0, len(s) - 1
         while i < j:
             a, b = s[i].lower(), s[j].lower()
