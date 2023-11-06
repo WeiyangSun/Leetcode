@@ -64,7 +64,7 @@ Explanation: There are no single numbers in the input table so we return null.
 """
 
 sql_query = """
-SELECT max(num)
+SELECT max(num) AS num
 FROM (
     SELECT num
     FROM MyNumbers
