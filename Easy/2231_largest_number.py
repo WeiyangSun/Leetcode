@@ -40,7 +40,8 @@ class Solution:
         for num in num_list:
             if num % 2 == 0: 
                 even_list.append(num)
-            odd_list.append(num)
+            else:
+                odd_list.append(num)
         
         odd_list.sort()
         even_list.sort()
@@ -49,6 +50,7 @@ class Solution:
         for i in range(n):
             if num_list[i] % 2 == 0:
                 result = result*10 + even_list.pop() #multiplied by 10 to move 10s, 100s etc.
-            result = result*10 + odd_list.pop()
+            else:
+                result = result*10 + odd_list.pop()
 
         return result
