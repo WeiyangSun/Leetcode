@@ -80,3 +80,22 @@ class Solution:
             i+=1
 
         return result
+
+import collections
+class Solution:
+    def alternate_countCollisons(self, directions: str) -> int:
+        car_queue = collections.deque(list(directions))
+
+        # Note: Trying to combine both while loops into a single while loop isn't runtime efficient
+        # It seems like it is better to perform one task per loop
+
+        # Handles the edge case - Where all vehicles turn L
+        while len(car_queue) > 0 and car_queue[0] == 'L':
+            car_queue.popleft()
+
+        # Handles the edge case - Where all vehicles turn R
+        while len(car_queue) > 0 and car_queue[-1] == 'R':
+            car_queue.pop()
+
+        # Ultimately, as long as you perform a turn inside, you will get a collision -  except for stationary
+        return len(car_queue) - car_queue.count('S')
