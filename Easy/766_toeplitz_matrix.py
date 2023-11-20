@@ -52,3 +52,12 @@ class Solution:
 class Solution:
     def isToeplitzMatrix(self, matrix: list(list(int))) -> bool:
         return all(r1[:-1] == r2[1:] for r1, r2 in zip(matrix, matrix[1:]))
+    
+class Solution:
+    def isToeplitzMatrix(self, matrix: list(list(int))) -> bool:
+        rows = len(matrix)
+        cols = len(matrix[0])
+        for i in range(rows-1):
+            if matrix[i][:cols-1] != matrix[i+1][1:cols]:
+                return False
+        return True
