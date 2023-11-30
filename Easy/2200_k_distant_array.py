@@ -48,9 +48,33 @@ class Solution:
         key_indices = [i for i in range(len(nums)) if nums[i] == key]
 
         output_list = []
-        for i in range(len(nums)):
-            for ix in key_indices:
-                if abs(i-ix) <= key:
+
+        for each_ix in key_indices:
+            lower_bound = max(0, each_ix - k)
+            upper_bound = min(len(nums)-1, each_ix + k)
+
+            for i in range(lower_bound, upper_bound + 1):
+                if abs(i-each_ix) <= k:
                     output_list.append(i)
 
-        return sorted(output_list)
+        return sorted(set(output_list))
+    
+class Solution:
+    def findKDistantIndices(self, nums:list(int), key:int, k:int) -> list(int):
+
+        n = len(nums)
+        output_list = []
+
+        for i in range(n):
+            if nums[i] == key:
+                lower_bound = max(0, i - k)
+                upper_bound = min(n - 1, i + k)
+
+                # Prevents Overlapping Search
+                if output_list:
+                    lower_bound = max(output_list[-1] + 1, lower_bound)
+
+                for j in range(lower_bound, upper_bound + 1):
+                    output_list.append(j)
+
+        return output_list
