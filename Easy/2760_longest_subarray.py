@@ -53,7 +53,7 @@ Constraints:
 """
 
 class Solution:
-    def longestAlternatingSubarray(self, nums, threshold):
+    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
         starting_points = [ix for ix, v in enumerate(nums) if v % 2 == 0 and v <= threshold]
         ending_points = [ix for ix, v in enumerate(nums) if v <= threshold]
         length_list = [0]
@@ -74,7 +74,7 @@ class Solution:
         return max(length_list)
 
 class Solution:
-    def longestAlternatingSubarray(self, nums, threshold):
+    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
         starting_points = [ix for ix, v in enumerate(nums) if v % 2 == 0 and v <= threshold]
         ending_points = [ix for ix, v in enumerate(nums) if v <= threshold]
         max_length = 0
@@ -89,11 +89,26 @@ class Solution:
 
         return max_length
 
-    def isAlternating(self, arr):
+    def isAlternating(self, arr:list(int)) -> bool:
         for i in range(len(arr) - 1):
             if arr[i] % 2 == arr[i + 1] % 2:
                 return False
         return True
 
-sol = Solution()
-print(sol.longestAlternatingSubarray(nums=[4,3,1], threshold=4))
+class Solution:
+    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
+        ans = i = 0
+        last = float('inf')
+
+        while i < len(nums):
+            # Resets Counter for Subarray
+            if nums[i] > threshold or (i > 0 and (nums[i]%2) == (nums[i-1]%2)):
+                ans = max(ans, i - last)
+                last = float('inf')
+            # Sets start of Counter for Subarray
+            if last == float('inf') and nums[i] <= threshold and (nums[i]%2) == 0:
+                last = i
+            i += 1
+
+        ans = max(ans, i - last)
+        return ans
