@@ -26,3 +26,18 @@ class Solution:
     def addBinary(self, a:str, b:str) -> str:
         int_sum = int(a, 2) + int(b, 2)
         return bin(int_sum)[2:]
+
+class Solution:
+    def addBinary(self, a:str, b:str) -> str:
+        res = ''
+        i, j, carry = len(a)-1, len(b)-1, 0
+        while i >= 0 or j >= 0:
+            sum_count = carry
+            if i >= 0: sum_count += ord(a[i]) - ord('0')
+            if j >= 0: sum_count += ord(b[j]) - ord('0')
+            i, j = i-1, j-1
+            carry = 1 if sum_count > 1 else 0
+            res += str(sum_count % 2)
+
+        if carry != 0: res += str(carry)
+        return res[::-1]
