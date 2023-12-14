@@ -40,5 +40,30 @@ class Solution:
 
         return max_profit
 
+class Solution:
+    def maxProfit(self, prices:list[int]) -> int:
+        min_price = float('inf')
+        max_profit = 0
+
+        for i in prices:
+            if i < min_price:
+                min_price = i
+            current_profit = i - min_price
+            max_profit = max(max_profit, current_profit)
+
+        return max_profit
+
+class Solution:
+    def maxProfit(self, prices:list[int]) -> int:
+        local_max, global_max = 0, 0
+
+        for i in range(1, len(prices)):
+            # If prices[i] - prices[i-1] > 0, add to local_max to reflect increased profit
+            # Else reset local_max to 0
+            local_max = max(0, local_max + prices[i] - prices[i-1])
+            global_max = max(local_max, global_max)
+
+        return global_max
+
 sol = Solution()
-print(sol.maxProfit([7,6,4,3,1]))
+print(sol.maxProfit([7,1,5,3,6,4]))
