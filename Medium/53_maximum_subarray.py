@@ -34,12 +34,25 @@ Constraints:
 class Solution:
     def maxSubArray(self, nums:list[int]) -> int:
         n = len(nums)
-        current_max = nums[0]
+        ans_container = []
         
-        for i in range(1, n):
-            current_max = max(current_max, current_max + nums[i])
+        for i in range(n):
+            local_max = 0
+            nums_sum = 0
+            for j in range(i, n):
+                end_position = 0
+                nums_sum += nums[j]
+                local_max = max(local_max, nums_sum)
+                if nums_sum > local_max:
+                    end_position = j
+            ans_container.append((local_max, end_position))
 
-        return current_max
+        global_max = 0
+        for v in ans_container:
+            if v[0] > global_max:
+                global_max = v[0]
+
+        return global_max
 
 #[-2,1,-3,"4,-1,2,1",-5,4]
 sol = Solution()
