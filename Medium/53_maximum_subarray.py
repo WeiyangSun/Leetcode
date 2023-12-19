@@ -36,6 +36,9 @@ class Solution:
         n = len(nums)
         ans_container = []
         
+        if n == 1:
+            return nums[0]
+
         for i in range(n):
             local_max = 0
             nums_sum = 0
@@ -54,6 +57,5 @@ class Solution:
 
         return global_max
 
-#[-2,1,-3,"4,-1,2,1",-5,4]
 sol = Solution()
-print(sol.maxSubArray(nums=[-2,1,-3,4,-1,2,1,-5,4]))
+print(sol.maxSubArray(nums=[-1]))
