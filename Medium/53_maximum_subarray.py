@@ -68,7 +68,7 @@ class Solution:
 class Solution:
     def maxSubArray(self, nums:list[int]) -> int:
         n = len(nums)
-        local_max, global_max = nums[0]
+        local_max, global_max = nums[0], nums[0]
 
         for i in range(1, n):
             local_max = max(nums[i], local_max + nums[i])
