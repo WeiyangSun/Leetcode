@@ -55,3 +55,24 @@ class Solution:
 
 sol = Solution()
 print(sol.twoSum(nums=[-3,4,3,90], target=0))
+
+class Solution:
+    def twoSum(self, nums:list[int], target:int) -> list[int]:
+        for i in range(len(nums)):
+            remaining = target - nums[i]
+            if remaining in nums[i+1:]:
+                return[i, nums.index(remaining, i+1)]
+        return []
+    
+class Solution:
+    def twoSum(self, nums:list[int], target:int) -> list[int]:
+        dict = {}
+        for i, v in enumerate(nums):
+            remaining = target - v
+            if remaining in dict:
+                return [dict[remaining], i]
+            dict[v] = i
+        return []
+            
+sol = Solution()
+print(sol.twoSum(nums=[2,7,11,15], target=9))
