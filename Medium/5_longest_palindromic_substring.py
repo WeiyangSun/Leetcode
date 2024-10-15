@@ -31,20 +31,48 @@ class Solution:
             else:
                 mem_dict[s[i]] = [i]
         
-        filtered_list = [i for v in mem_dict.values() if len(v) >= 2 for i in v]
+        max_palindrome = s[0]
+        for indices in mem_dict.values():
+            if len(indices) >= 2:
+                for i in range(len(indices)):
+                    for j in range(i+1, len(indices)):
+                        start = indices[i]
+                        end = indices[j] + 1
+                        substring = s[start:end]
+                        if substring == substring[::-1]:
+                            if len(substring) > len(max_palindrome):
+                                max_palindrome = substring
         
-        if not filtered_list:
-            # No characters appeared more than once, so return the first character as the longest palindrome.
-            return s[0]
+        return max_palindrome
+    
+class Solution:
+    def longestPalindrome(self, s: str) -> str:
         
-        min_index = min(filtered_list)
-        max_index = max(filtered_list)
-        full_list = list(range(min_index, max_index + 1))
+        def expandAroundCenter(s: str, left: int, right: int) -> int:
         
-        no_missing_numbers = len(full_list) - len(filtered_list)
+            while left >= 0 and right < len(s) and s[left] == s[right]:
+                left -= 1
+                right += 1
+                
+            return right - left - 1
         
-        if no_missing_numbers <= 1:
-            return s[min_index: max_index + 1]
+        if not s:
+            return ""
         
-        # If the condition is not met, return the first character as a default case (or any other logic you'd prefer)
-        return s[0]
+        start, end = 0, 0
+        
+        for ix in range(len(s)):
+            # Odd-Length Palindrome
+            len1 = expandAroundCenter(s, ix, ix)
+            # Even-Length
+            len2 = expandAroundCenter(s, ix, ix + 1)
+            
+            max_len = max(len1, len2)
+            
+            if max_len > start - end:
+                start = ix - (max_len - 1) // 2
+                end = ix + (max_len // 2)
+                
+        return s[start: end + 1]
+                
+            
