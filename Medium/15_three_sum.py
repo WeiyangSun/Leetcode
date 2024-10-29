@@ -71,5 +71,41 @@ class Solution:
 
         return [list(triplet) for triplet in plausible_solutions]
 
+class Solution:
+    def threeSum(self, nums: list[int]) -> list[list[int]]:
+        nums.sort() # Sort array to facilitate approach
+        n = len(nums)
+        result = []
+
+        for i in range(n-2):
+            # skip duplicates numbers to avoid duplicate triplets
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+
+            left_pointer = i + 1
+            right_pointer = n - 1
+
+            while left_pointer < right_pointer:
+                total = nums[i] + nums[left_pointer] + nums[right_pointer]
+
+                if total == 0:
+                    result.append([nums[i], nums[left_pointer]. nums[right_pointer]])
+                    
+                    while left_pointer < right_pointer and nums[left_pointer] == nums[left_pointer+1]:
+                        left_pointer += 1
+                    
+                    while left_pointer < right_pointer and nums[right_pointer] == nums[right_pointer-1]:
+                        right_pointer -= 1
+
+                    left_pointer += 1
+                    right_pointer -= 1
+
+                elif total < 0:
+                    left_pointer += 1
+                else:
+                    right_pointer -= 1
+
+            return result
+
 sol = Solution()
 print(sol.threeSum(nums=[-1,0,1,2,-1,-4]))
