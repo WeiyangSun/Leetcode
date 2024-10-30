@@ -105,7 +105,7 @@ class Solution:
                 else:
                     right_pointer -= 1
 
-            return result
+        return result
 
 sol = Solution()
 print(sol.threeSum(nums=[-1,0,1,2,-1,-4]))
