@@ -56,12 +56,41 @@ class Solution:
             letters = number_to_letters_map.get(current_digit, "")
 
             for letter in letters:
-                combination.append(letter)
-                backtrack(index+1)
-                combination.pop()
+                combination.append(letter) # choose
+                backtrack(index+1) # explore
+                combination.pop() # terminate
 
         backtrack(0)
         return result
+
+from collections import deque
+class Solution:
+    def letterCombinations(self, digits: str) -> list[str]:
+        if not digits:
+            return []
+
+        number_to_letters_map = {"2": "abc",
+                                "3": "def",
+                                "4": "ghi",
+                                "5": "jkl",
+                                "6": "mno",
+                                "7": "pqrs",
+                                "8": "tuv",
+                                "9": "wxyz"
+                                }
+
+        queue = deque([''])
+
+        for each_digit in digits:
+            letters = number_to_letters_map.get(each_digit, "")
+            level_size = len(queue)
+
+            for _ in range(level_size):
+                combination = queue.popleft()
+                for letter in letters:
+                    queue.append(combination + letter)
+
+        return list(queue)
 
 sol = Solution()
 print(sol.letterCombinations(digits="23"))
