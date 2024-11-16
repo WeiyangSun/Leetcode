@@ -41,7 +41,7 @@ The substring starting at 6 is "foobarthe". It is the concatenation of ["foo","b
 The substring starting at 9 is "barthefoo". It is the concatenation of ["bar","the","foo"].
 The substring starting at 12 is "thefoobar". It is the concatenation of ["the","foo","bar"].
 """
-from collections import Counter
+from collections import Counter, defaultdict
 from typing import List
 
 class Solution:
@@ -100,3 +100,40 @@ s = "barfoothefoobarman"
 words = ["foo", "bar"]
 sol = Solution()
 print(sol.findSubstring(s, words))
+
+class Solution:
+    def findSubstring(self, s: str, words: List[str]) -> List[int]:
+        if not s or not words:
+            return []
+        
+        word_len = len(words[0])
+        word_count = Counter(words)
+        num_words = len(words)
+        result = []
+        
+        for i in range(word_len):
+            left = i
+            count = 0
+            window_word_count = defaultdict(int)
+            
+            for j in range(i, len(s) - word_len+1, word_len):
+                word = s[j:j+word_len]
+                if word in word_count:
+                    window_word_count[word] += 1
+                    count += 1
+                    
+                    while window_word_count[word] > word_count[word]:
+                        left_word = s[left:left+word_len]
+                        window_word_count[left_word] -= 1
+                        left += word_len
+                        count -= 1
+                    
+                    if count == num_words:
+                        result.append(left)
+                
+                else:
+                    window_word_count.clear()
+                    count = 0
+                    left = j + word_len
+            
+        return result
