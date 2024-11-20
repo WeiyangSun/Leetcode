@@ -48,7 +48,7 @@ class Solution:
                 else:
                     left_pointer = mid_pointer + 1
             else:
-                if nums[mid_pointer] <= target < nums[right_pointer]:
+                if nums[mid_pointer] < target <= nums[right_pointer]:
                     left_pointer = mid_pointer + 1
                 else:
                     right_pointer = mid_pointer - 1
