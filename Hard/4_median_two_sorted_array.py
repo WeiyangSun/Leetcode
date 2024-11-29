@@ -64,8 +64,8 @@ class Solution:
         imin, imax, half_len = 0, m, (m+n+1)//2
         
         while imin <= imax:
-            i = imin + (imax - imin) // 2
-            j = half_len - i
+            i = imin + (imax - imin) // 2 #mid-point of the smaller array
+            j = half_len - i # determines how many elements in big array should be included in left partition
             
             if i < m and B[j-1] > A[i]:
                 imin = i + 1
