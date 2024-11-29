@@ -65,3 +65,52 @@ class Solution:
             if board[block_row_index][block_col_index] == num:
                 return False
         return True
+
+class Solution:
+    def solveSudoku(self, board: List[List[str]]) -> None:
+        """
+        Solves the Sudoku puzzle by filling the empty cells.
+        Modifies the board in-place.
+        """
+        # Data structures to keep track of the numbers in rows, columns, and boxes
+        rows = [set() for _ in range(9)]       # Numbers in each row
+        cols = [set() for _ in range(9)]       # Numbers in each column
+        boxes = [set() for _ in range(9)]      # Numbers in each 3x3 box
+        empty_cells = []                       # List to store the positions of empty cells
+
+        # Initialize the sets and collect empty cells
+        for i in range(9):
+            for j in range(9):
+                num = board[i][j]
+                if num != '.':
+                    rows[i].add(num)
+                    cols[j].add(num)
+                    box_index = (i // 3) * 3 + (j // 3)
+                    boxes[box_index].add(num)
+                else:
+                    empty_cells.append((i, j))
+
+        # Backtracking function to fill the empty cells
+        def backtrack(index=0):
+            if index == len(empty_cells):
+                return True  # All cells are filled successfully
+            i, j = empty_cells[index]
+            box_index = (i // 3) * 3 + (j // 3)
+            for num in map(str, range(1, 10)):
+                if num not in rows[i] and num not in cols[j] and num not in boxes[box_index]:
+                    # Place the number in the board
+                    board[i][j] = num
+                    rows[i].add(num)
+                    cols[j].add(num)
+                    boxes[box_index].add(num)
+                    # Move to the next empty cell
+                    if backtrack(index + 1):
+                        return True
+                    # Backtrack if not valid
+                    board[i][j] = '.'
+                    rows[i].remove(num)
+                    cols[j].remove(num)
+                    boxes[box_index].remove(num)
+            return False  # Trigger backtracking
+
+        backtrack()
