@@ -50,7 +50,7 @@ class Solution:
                 # First scenario - *:
                 if p[j-1] == '*':
                     dp[i][j] = dp[i-1][j] or dp[i][j-1]
-                elif p[j-1] == '?' or p[j-1] == s[j-1]:
+                elif p[j-1] == '?' or p[j-1] == s[i-1]:
                     dp[i][j] = dp[i-1][j-1]
                 else:
                     dp[i][j] = False
