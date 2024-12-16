@@ -78,5 +78,19 @@ class Solution:
         return global_max
 
 
+# Kadane's Algorithm
+class Solution:
+    def maxSubArray(self, nums:list[int]) -> int:
+        currentSum = maxSum = nums[0]
+        
+        for i in range(1, len(nums)):
+            #1. Compare and Decide if you should include current number in current sum
+            currentSum = max(currentSum+nums[i], nums[i])
+            
+            #2. Update maxSum if currentSum is bigger
+            maxSum = max(maxSum, currentSum)
+
+        return maxSum
+
 sol = Solution()
 print(sol.maxSubArray(nums=[-2,1,-3,4,-1,2,1,-5,4]))

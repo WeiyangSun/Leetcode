@@ -51,3 +51,37 @@ class Solution:
             return solutions_count
 
         return backtrack(0)
+
+class Solution:
+    def totalNQueens(self, n: int) -> int:
+        
+        self.count_solutions = 0
+        board = [-1]*n
+
+        def is_safe(row, col):
+            for prev_row in range(row):
+                #Column Check
+                prev_col = board[prev_row]
+                if prev_col == col:
+                    return False
+                
+                #Diagonal Check
+                if abs(prev_row - row) == abs(prev_col - col):
+                    return False
+                
+            return True
+
+        def backtracking(row):
+            #Base Case
+            if row == n:
+                self.count_solutions += 1
+            
+            #Backtracking
+            for col in range(n):
+                if is_safe(row, col):
+                    board[row] = col
+                    backtracking(row+1)
+                    board[row] = -1
+        
+        backtracking(0)
+        return self.count_solutions
