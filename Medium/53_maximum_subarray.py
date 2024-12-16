@@ -83,7 +83,7 @@ class Solution:
     def maxSubArray(self, nums:list[int]) -> int:
         currentSum = maxSum = nums[0]
         
-        for i in range(len(nums)):
+        for i in range(1, len(nums)):
             #1. Compare and Decide if you should include current number in current sum
             currentSum = max(currentSum+nums[i], nums[i])
             
