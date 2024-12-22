@@ -21,7 +21,7 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        intervals.sort(lambda x: x[0])
+        intervals.sort(key= lambda x: x[0])
         
         merged = []
         
