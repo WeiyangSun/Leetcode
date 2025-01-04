@@ -68,3 +68,36 @@ class Solution:
                     dp[row][col] = dp[row-1][col] + dp[row][col-1]
 
         return dp[no_of_rows-1][no_of_cols-1]
+
+class Solution:
+    def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
+        if not obstacleGrid or obstacleGrid[0][0] == 1:
+            return 0
+
+        m, n = len(obstacleGrid), len(obstacleGrid[0])
+
+        # If the end cell is blocked, return 0 immediately
+        if obstacleGrid[m-1][n-1] == 1:
+            return 0
+
+        # dp array of size n (for columns)
+        dp = [0] * n
+
+        # Initialize dp[0] if start cell is not blocked
+        dp[0] = 1
+
+        # Fill the dp array row by row
+        for i in range(m):
+            for j in range(n):
+                # If there is an obstacle, ways = 0
+                if obstacleGrid[i][j] == 1:
+                    dp[j] = 0
+                else:
+                    # If not an obstacle and j > 0, add the ways from left (dp[j-1])
+                    if j > 0:
+                        dp[j] += dp[j - 1]
+                    
+                # dp[j] at the end of this iteration 
+                # represents number of ways to reach (i, j)
+
+        return dp[n-1]
