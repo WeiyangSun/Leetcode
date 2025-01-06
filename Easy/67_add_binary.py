@@ -41,3 +41,25 @@ class Solution:
 
         if carry != 0: res += str(carry)
         return res[::-1]
+
+class Solution:
+    def addBinary(self, a:str, b:str) -> str:
+        i = len(a) - 1
+        j = len(b) - 1
+        carry = 0
+        result = []
+
+        while i >=0 or j >= 0 or carry:
+            first_binary_digit = int(a[i]) if i >= 0 else 0
+            second_binary_digit = int(b[j]) if j >= 0 else 0
+
+            # summation
+            sum = first_binary_digit + second_binary_digit + carry
+            
+            result.append(str(sum%2))
+            carry = sum // 2
+
+            i -= 1
+            j -= 1
+
+        return "".join(result[::-1])
