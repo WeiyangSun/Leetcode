@@ -64,37 +64,43 @@ class Solution:
         current_line_length = 0
         
         for word in words:
-            # Check if adding in current word into existing word line would exceed max width
+            # if adding in current word into existing word line would exceed max width
             if current_line_length + len(word) + len(current_line_words) > maxWidth:
-                # Justifiy current line
+                # calculating available whitespaces
                 spaces_to_fill = maxWidth - current_line_length
                 gap_count = len(current_line_words) - 1
-
+                # if no word gaps available because it is a single word
                 if gap_count == 0:
-                    # Making it left-justified if one word or no gaps
                     line = current_line_words[0] + (' '*spaces_to_fill)
+
                 else:
-                    # Distribute spaces evenly
+                    # figuring out how to distribute whitespaces evenly
                     base_spaces = spaces_to_fill // gap_count
                     extra_spaces = spaces_to_fill % gap_count
 
                     line_parts = []
+                    # iterating through each word in current_line to evenly distribute spaces
                     for i in range(gap_count):
+                        # First append word
                         line_parts.append(current_line_words[i])
+                        # For the first extra spaces gaps, add one extra space
                         spaces = base_spaces + (1 if i < extra_spaces else 0)
+                        # Then append whitespaces
                         line_parts.append(' '*spaces)
+                    # Adding in the last word
                     line_parts.append(current_line_words[-1])
                     line = ''.join(line_parts)
                 
                 result.append(line)
-                # Performing Reset
+                # Performing Reset for a new line
                 current_line_words = []
                 current_line_length = 0
 
-            # Add current word to the line
+            # else if it has yet to hit maxWidth
             current_line_words.append(word)
             current_line_length += len(word)
 
+        # Handling the last line (left-justified)
         if current_line_words:
             line = ' '.join(current_line_words)
             spaces_left = maxWidth - len(line)
