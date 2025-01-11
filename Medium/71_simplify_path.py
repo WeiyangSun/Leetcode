@@ -63,7 +63,6 @@ Explanation:
 class Solution:
     def simplifyPath(self, path: str) -> str:
         stack =[]
-
         list_of_path = path.split('/')
 
         for item in list_of_path:
