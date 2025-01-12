@@ -63,9 +63,8 @@ Explanation:
 class Solution:
     def simplifyPath(self, path: str) -> str:
         stack =[]
-        list_of_path = path.split('/')
 
-        for item in list_of_path:
+        for item in path.split('/'):
             if item == '' or item == '.':
                 continue
             elif item == '..':
