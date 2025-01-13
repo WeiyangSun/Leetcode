@@ -27,8 +27,8 @@ class Solution:
 
         n_rows, n_cols = len(matrix), len(matrix[0])
         # Flags to check if first row or column has zeroes
-        first_row_has_zero = any(matrix[0][col] for col in range(n_cols))
-        first_col_has_zero = any(matrix[row][0] for row in range(n_rows))
+        first_row_has_zero = any(matrix[0][col] == 0 for col in range(n_cols))
+        first_col_has_zero = any(matrix[row][0] == 0 for row in range(n_rows))
 
         # First pass - Mark zeros in the first row/column
         for row in range(1, n_rows):
