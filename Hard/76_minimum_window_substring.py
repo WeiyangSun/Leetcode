@@ -59,7 +59,7 @@ class Solution:
             # Trying to shrink window from left as long as we have all target required
             while sliding_unique == target_unique:
                 # Shrink sliding window
-                window_size = right - (left + 1)
+                window_size = right - left + 1
                 if window_size < result_length:
                     result_length = window_size
                     result_start = left
