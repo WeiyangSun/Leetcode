@@ -37,7 +37,7 @@ class Solution:
 
         for r in range(rows):
             for c in range(cols):
-                if matrix[r][c] == 0:
+                if matrix[r][c] == '0':
                     heights[c] = 0
                 else:
                     heights[c] += 1
@@ -56,7 +56,7 @@ class Solution:
             
             while stack and extended_heights[stack[-1]] > h:
                 current_height = extended_heights[stack.pop()]
-                current_width = ix - stack[-1] - 1
+                current_width = ix if not stack else ix - stack[-1] - 1
                 
                 max_area = max(max_area, current_height*current_width)
             
