@@ -25,7 +25,6 @@ Output: 1
 """
 
 class Solution:
-    def largestRectangleArea(self, heights):
     
     def maximalRectangle(self, matrix: list[list[str]]) -> int:
         if not matrix or not matrix[0]:
@@ -38,11 +37,29 @@ class Solution:
 
         for r in range(rows):
             for c in range(cols):
-                if matrix[r][c] == 0:
+                if matrix[r][c] == '0':
                     heights[c] = 0
                 else:
                     heights[c] += 1
 
-            max_area = max(max_area, largestRectangleArea(heights))
+            max_area = max(max_area, self.largestRectangleArea(heights))
+        
+        return max_area
+    
+    def largestRectangleArea(self, heights):
+        # Finding largest rectangle in histogram
+        stack = []
+        max_area = 0
+        extended_heights = heights + [0]
+        
+        for ix, h in enumerate(extended_heights):
+            
+            while stack and extended_heights[stack[-1]] > h:
+                current_height = extended_heights[stack.pop()]
+                current_width = ix if not stack else ix - stack[-1] - 1
+                
+                max_area = max(max_area, current_height*current_width)
+            
+            stack.append(ix)
         
         return max_area
