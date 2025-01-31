@@ -42,3 +42,35 @@ Output: true
 
 class Solution:
     def isScramble(self, s1: str, s2: str) -> bool:
+        
+        memo = {}
+        
+        def scramble_check(a, b):
+            # if seen subproblem before, return stored result
+            if (a, b) in memo:
+                return memo[(a, b)]
+            
+            # Base Case:
+            if a == b:
+                memo[(a, b)] = True
+                return True
+            if sorted(a) != sorted(b):
+                memo[(a, b)] = False
+                return False
+            
+            n = len(a)
+            for i in range(1, n):
+                # Not Swapped
+                if scramble_check(a[:i], b[:i]) and scramble_check(a[i:], b[i:]):
+                    memo[(a, b)] = True
+                    return True
+                
+                # Swapped
+                if scramble_check(a[:i], b[n-i:]) and scramble_check(a[i:], b[:n-i]):
+                    memo[(a, b)] = True
+                    return True
+            
+            memo[(a, b)] = False
+            return False
+
+        return scramble_check(s1, s2)
