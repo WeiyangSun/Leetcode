@@ -51,10 +51,10 @@ class Solution:
                 return memo[(a, b)]
             
             # Base Case:
-            if a == b:
+            if a == b: # Trivially Scrambled
                 memo[(a, b)] = True
                 return True
-            if sorted(a) != sorted(b):
+            if len(a) != len(b) or sorted(a) != sorted(b):
                 memo[(a, b)] = False
                 return False
             
