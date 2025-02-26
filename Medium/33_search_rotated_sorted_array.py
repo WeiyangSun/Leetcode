@@ -29,20 +29,21 @@ Input: nums = [1], target = 0
 Output: -1
 """
 
+
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        
+
         left_pointer = 0
-        right_pointer = len(nums)-1
-        
+        right_pointer = len(nums) - 1
+
         while left_pointer <= right_pointer:
-            mid_pointer = left_pointer  + (right_pointer - left_pointer) // 2
-            
+            mid_pointer = left_pointer + (right_pointer - left_pointer) // 2
+
             if nums[mid_pointer] == target:
                 return mid_pointer
-            
-            #See which side is sorted
-            if nums[left_pointer] <= nums[mid_pointer]: #left-side is sorted
+
+            # See which side is sorted
+            if nums[left_pointer] <= nums[mid_pointer]:  # left-side is sorted
                 if nums[left_pointer] <= target < nums[mid_pointer]:
                     right_pointer = mid_pointer - 1
                 else:
@@ -54,4 +55,3 @@ class Solution:
                     right_pointer = mid_pointer - 1
 
         return -1
-

@@ -19,11 +19,12 @@ Input: height = [4,2,0,3,2,5]
 Output: 9
 """
 
+
 class Solution:
     def trap(self, height: list[int]) -> int:
         if not height:
             return 0
-        
+
         left_pointer = 0
         right_pointer = len(height) - 1
         max_left, max_right, trapped_water = 0, 0, 0
@@ -41,6 +42,5 @@ class Solution:
                 else:
                     trapped_water += max_right - height[right_pointer]
                 right_pointer -= 1
-        
+
         return trapped_water
-                

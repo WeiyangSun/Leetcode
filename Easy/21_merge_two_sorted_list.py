@@ -24,14 +24,18 @@ Output: [0]
 """
 from typing import Optional
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
 
+
 class Solution:
-    def mergeTwoLists(self, lst1 = Optional[ListNode], lst2 = Optional[ListNode]) -> Optional[ListNode]:
-        
+    def mergeTwoLists(
+        self, lst1=Optional[ListNode], lst2=Optional[ListNode]
+    ) -> Optional[ListNode]:
+
         dummy = ListNode(0)
         current = dummy
 
@@ -43,7 +47,7 @@ class Solution:
                 current.next = lst2
                 lst2 = lst2.next
             current = current.next
-        
+
         if lst1:
             current.next = lst1
         else:

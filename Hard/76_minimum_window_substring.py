@@ -31,31 +31,32 @@ Since the largest window of s only has one 'a', return empty string.
 
 from collections import Counter
 
+
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
-        
+
         target_dict = Counter(t)
         target_unique = len(target_dict)
-        
+
         # Counters for sliding windows
         left = 0
         sliding_dict = {}
         sliding_unique = 0
-        
+
         # Index for results
-        result_length = float('inf')
+        result_length = float("inf")
         result_start = 0
-        
+
         for right, char in enumerate(s):
-            
+
             # Recording character into sliding_dict to capture what sliding window has come across
             sliding_dict[char] = sliding_dict.get(char, 0) + 1
-            
+
             # If character is in target and frequency matches between sliding window and target
             if char in target_dict and sliding_dict[char] == target_dict[char]:
                 # unique characters in sliding windows increases by 1
                 sliding_unique += 1
-            
+
             # Trying to shrink window from left as long as we have all target required
             while sliding_unique == target_unique:
                 # Shrink sliding window
@@ -63,18 +64,18 @@ class Solution:
                 if window_size < result_length:
                     result_length = window_size
                     result_start = left
-                
+
                 # Character that is about to be removed because of shrinking window
                 left_char = s[left]
                 sliding_dict[left_char] -= 1
                 # If character is in target_dict and we have dropped below target count
                 if left_char in target_dict and sliding_dict[left_char] < target_dict[left_char]:
                     sliding_unique -= 1
-                
+
                 # Move left pointer forward to shrink window
                 left += 1
-            
-        if result_length == float('inf'):
+
+        if result_length == float("inf"):
             return ""
         else:
-            return s[result_start: result_start+result_length]
+            return s[result_start : result_start + result_length]

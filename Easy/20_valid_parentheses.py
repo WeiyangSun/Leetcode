@@ -29,14 +29,12 @@ Input: s = "([])"
 Output: true
 """
 
+
 class Solution:
     def isValid(self, s: str) -> bool:
 
         stack = []
-        open_parentheses_map = {'(': ')',
-                                '{': '}',
-                                '[': ']'
-                            }
+        open_parentheses_map = {"(": ")", "{": "}", "[": "]"}
 
         for char in s:
             if char in open_parentheses_map.keys():
@@ -47,6 +45,7 @@ class Solution:
                     return False
 
         return not stack
+
 
 sol = Solution()
 print(sol.isValid(s="([)]"))

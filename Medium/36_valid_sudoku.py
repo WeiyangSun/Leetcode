@@ -49,55 +49,56 @@ Since there are two 8's in the top left 3x3 sub-box, it is invalid.
 
 from collections import Counter
 
+
 class Solution:
     def isValidSudoku(self, board: list[list[int]]) -> bool:
-        
+
         # Check each row for no duplicate values
         for row in board:
             row_count = Counter(row)
-            if any(v > 1 for k, v in row_count.items() if k != '.'):
+            if any(v > 1 for k, v in row_count.items() if k != "."):
                 return False
-        
+
         # Check each col for no duplicate values
         transpose_board = [list(i) for i in zip(*board)]
         for col in transpose_board:
             col_count = Counter(col)
-            if any(v > 1 for k, v in col_count.items() if k != '.'):
+            if any(v > 1 for k, v in col_count.items() if k != "."):
                 return False
-        
+
         # Check 3x3 square
         for i in range(0, 9, 3):
             for j in range(0, 9, 3):
                 flatten_square = []
-                for x in range(i, i+3):
-                    for y in range(j, j+3):
+                for x in range(i, i + 3):
+                    for y in range(j, j + 3):
                         flatten_square.append(board[x][y])
-                
+
                 value_count = Counter(flatten_square)
-                if any(v > 1 for k,v in value_count.items() if k != '.'):
+                if any(v > 1 for k, v in value_count.items() if k != "."):
                     return False
 
         return True
 
 
 class Solution:
-    def isValidSudoku(self, board:list[list[int]]) -> bool:
-        
+    def isValidSudoku(self, board: list[list[int]]) -> bool:
+
         rows = [set() for _ in range(9)]
         columns = [set() for _ in range(9)]
         blocks = [set() for _ in range(9)]
-        
-        #Iterate through cell in the board
+
+        # Iterate through cell in the board
         for i in range(9):
             for j in range(9):
                 num = board[i][j]
-                
-                if num != '.':
+
+                if num != ".":
                     block_index = (i // 3) * 3 + j // 3
-                    
-                    if (num in rows[i] or num in columns[j] or num in blocks[block_index]):
+
+                    if num in rows[i] or num in columns[j] or num in blocks[block_index]:
                         return False
-                    
+
                     rows[i].add(num)
                     columns[j].add(num)
                     blocks[block_index].add(num)

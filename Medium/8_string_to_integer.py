@@ -74,21 +74,22 @@ Explanation:
 Reading stops at the first non-digit character 'w'.
 """
 
+
 class Solution:
     def myAtoi(self, s: str) -> int:
 
         final_sum = 0
         sign = 1
         INT_MAX = (2**31) - 1
-        INT_MIN = -2**31
+        INT_MIN = -(2**31)
         cursor_index = 0
         n = len(s)
 
-        while cursor_index < n  and s[cursor_index] == ' ':
+        while cursor_index < n and s[cursor_index] == " ":
             cursor_index += 1
 
-        if cursor_index < n and s[cursor_index] in ('+', '-'):
-            sign = -1 if s[cursor_index] == '-' else 1
+        if cursor_index < n and s[cursor_index] in ("+", "-"):
+            sign = -1 if s[cursor_index] == "-" else 1
             cursor_index += 1
 
         while cursor_index < n and s[cursor_index].isdigit():
@@ -100,7 +101,8 @@ class Solution:
             final_sum = final_sum * 10 + digit
             cursor_index += 1
 
-        return max(min(final_sum*sign, INT_MAX), INT_MIN)
+        return max(min(final_sum * sign, INT_MAX), INT_MIN)
+
 
 sol = Solution()
-print(sol.myAtoi(s = " -042"))
+print(sol.myAtoi(s=" -042"))

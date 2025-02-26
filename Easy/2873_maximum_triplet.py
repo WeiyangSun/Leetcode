@@ -45,14 +45,15 @@ Constraints:
 1 <= nums[i] <= 106
 """
 
+
 class Solution:
     def maximumTripletValue(self, nums: list(int)) -> int:
         res = max_a = max_ab = 0
-        #max_a = nums[i]
-        #max_ab = nums[i] - nums[j]
+        # max_a = nums[i]
+        # max_ab = nums[i] - nums[j]
         for i in nums:
-            res = max(res, max_ab*i)
-            max_ab = max(max_ab, max_a-i)
+            res = max(res, max_ab * i)
+            max_ab = max(max_ab, max_a - i)
             max_a = max(max_a, i)
 
         return res

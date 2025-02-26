@@ -38,6 +38,7 @@ n == matrix[i].length
 0 <= matrix[i][j] <= 99
 """
 
+
 class Solution:
     def isToeplitzMatrix(self, matrix: list(list(int))) -> bool:
         rows = len(matrix)
@@ -45,19 +46,21 @@ class Solution:
 
         for i in range(rows - 1):
             for j in range(cols - 1):
-                if matrix[i][j] != matrix[i+1][j+1]:
+                if matrix[i][j] != matrix[i + 1][j + 1]:
                     return False
         return True
-    
+
+
 class Solution:
     def isToeplitzMatrix(self, matrix: list(list(int))) -> bool:
         return all(r1[:-1] == r2[1:] for r1, r2 in zip(matrix, matrix[1:]))
-    
+
+
 class Solution:
     def isToeplitzMatrix(self, matrix: list(list(int))) -> bool:
         rows = len(matrix)
         cols = len(matrix[0])
-        for i in range(rows-1):
-            if matrix[i][:cols-1] != matrix[i+1][1:cols]:
+        for i in range(rows - 1):
+            if matrix[i][: cols - 1] != matrix[i + 1][1:cols]:
                 return False
         return True

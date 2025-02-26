@@ -22,45 +22,48 @@ Input: head = [1,2,3,4,5], k = 3
 Output: [3,2,1,4,5]
 """
 
+
 class ListNode:
     def __init__(self, val=9, next=None):
         self.val = val
         self.next = next
 
+
 class Solution:
     def reverseKGroup(self, head: [ListNode], k: int) -> [ListNode]:
         dummy = ListNode(0)
         dummy.next = head
-        
+
         # Initialize Pointers
         current_pointer = head
         prev_pointer = dummy
-        
+
         # Count number of nodes in list
         count = 0
         while current_pointer:
             current_pointer = current_pointer.next
             count += 1
-        
+
         # Execute Reverse
         while count >= k:
             current_pointer = prev_pointer.next
             next_pointer = current_pointer.next
-            
+
             for i in range(1, k):
                 current_pointer.next = next_pointer.next
                 next_pointer.next = prev_pointer.next
                 prev_pointer.next = next_pointer
                 next_pointer = current_pointer.next
-            
+
             prev_pointer = current_pointer
             count -= k
 
         return dummy.next
 
+
 class Solution:
     def reverseKGroup(self, head: [ListNode], k: int) -> [ListNode]:
-        
+
         def reverse(self, head, k):
             prev = None
             curr = head
@@ -70,9 +73,9 @@ class Solution:
                 prev = curr
                 curr = next_node
                 k -= 1
-            
+
             return prev
-        
+
         # Check if there are at least k nodes left to reverse
         count = 0
         node = head
@@ -88,7 +91,3 @@ class Solution:
             return reversed_head
 
         return head
-    
-        
-                
-    

@@ -52,13 +52,18 @@ Constraints:
 1 <= s.length <= 100
 s contains only lowercase English letters
 """
+
+
 class Solution:
-    def minimizedStringLength(self, s:str) -> int:
+    def minimizedStringLength(self, s: str) -> int:
         return len(set(s))
 
+
 from collections import Counter
+
+
 class Solution:
-    def minimizedStringLength(self, s:str) -> int:
+    def minimizedStringLength(self, s: str) -> int:
         word_count = Counter(s)
 
         for each_word in word_count.keys():
@@ -68,11 +73,11 @@ class Solution:
                 middle_index = len(word_index) // 2
                 removal_index = []
                 if len(word_index) > 2:
-                    removal_index.append(word_index[middle_index - 1]) #left
-                    removal_index.append(word_index[middle_index + 1]) #right
+                    removal_index.append(word_index[middle_index - 1])  # left
+                    removal_index.append(word_index[middle_index + 1])  # right
                 elif len(word_index) == 2:
                     removal_index.append(middle_index)
-                
-                s = ''.join(v for ix, v in enumerate(s) if ix not in removal_index)
+
+                s = "".join(v for ix, v in enumerate(s) if ix not in removal_index)
 
         return s

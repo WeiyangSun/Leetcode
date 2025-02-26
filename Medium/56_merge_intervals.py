@@ -19,18 +19,19 @@ Output: [[1,5]]
 Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 """
 
+
 class Solution:
     def merge(self, intervals: list[list[int]]) -> list[list[int]]:
-        intervals.sort(key= lambda x: x[0])
-        
+        intervals.sort(key=lambda x: x[0])
+
         merged = []
-        
+
         for i in intervals:
-            #if merged is empty or current interval does not overlap with the last one in merged
+            # if merged is empty or current interval does not overlap with the last one in merged
             if not merged or merged[-1][1] < i[0]:
                 merged.append(i)
 
             else:
                 merged[-1][1] = max(merged[-1][1], i[1])
-        
+
         return merged

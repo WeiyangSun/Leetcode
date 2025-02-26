@@ -43,6 +43,7 @@ The words in s are separated by a single space.
 There are no leading or trailing spaces.
 """
 
+
 class Solution:
     def truncateSentence(self, s: str, k: int) -> str:
-        return ' '.join(s.split()[:k])
+        return " ".join(s.split()[:k])

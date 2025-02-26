@@ -60,17 +60,18 @@ Explanation:
 "..." is a valid name for a directory in this problem.
 """
 
+
 class Solution:
     def simplifyPath(self, path: str) -> str:
-        stack =[]
+        stack = []
 
-        for item in path.split('/'):
-            if item == '' or item == '.':
+        for item in path.split("/"):
+            if item == "" or item == ".":
                 continue
-            elif item == '..':
+            elif item == "..":
                 if stack:
                     stack.pop()
             else:
                 stack.append(item)
 
-        return '/' + '/'.join(stack)
+        return "/" + "/".join(stack)

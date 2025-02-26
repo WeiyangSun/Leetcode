@@ -21,36 +21,37 @@ Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "
 Output: false
 """
 
+
 class Solution:
     def exist(self, board: list[list[str]], word: str) -> bool:
-        
+
         rows = len(board)
         cols = len(board[0]) if rows else 0
-        
+
         def dfs(row, col, ix):
             # If we have matched all letters in the word
             if ix == len(word):
                 return True
-            
+
             # Boundary Conditions:
             if row < 0 or col < 0 or row >= rows or col >= cols or board[row][col] != word[ix]:
                 return False
-            
+
             # Temporarily mark cell as visited
             temp = board[row][col]
-            board[row][col] = '#'
-            
+            board[row][col] = "#"
+
             # Exploring Neighbors
             found = (
-                dfs(row+1, col, ix+1) or
-                dfs(row-1, col, ix+1) or
-                dfs(row, col+1, ix+1) or
-                dfs(row, col-1, ix+1)
+                dfs(row + 1, col, ix + 1)
+                or dfs(row - 1, col, ix + 1)
+                or dfs(row, col + 1, ix + 1)
+                or dfs(row, col - 1, ix + 1)
             )
-            
+
             # Restore Original Value
             board[row][col] = temp
-            
+
             return found
 
         for row in range(rows):

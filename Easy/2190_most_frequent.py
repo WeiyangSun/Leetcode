@@ -45,6 +45,7 @@ Constraints:
 The test cases will be generated such that the answer is unique.
 """
 
+
 class Solution:
     def mostFrequent(self, nums: list(int), key: int) -> int:
         key_indices = []
@@ -57,19 +58,23 @@ class Solution:
         for each_ix in key_indices:
             if each_ix + 1 < len(nums):
                 if nums[each_ix + 1] in target_dict:
-                    target_dict[nums[each_ix+1]] += 1
+                    target_dict[nums[each_ix + 1]] += 1
                 else:
-                    target_dict[nums[each_ix+1]] = 1
+                    target_dict[nums[each_ix + 1]] = 1
 
-        return list(target_dict.keys())[list(target_dict.values()).index(max(target_dict.values()))]
+        return list(target_dict.keys())[
+            list(target_dict.values()).index(max(target_dict.values()))
+        ]
+
 
 from collections import Counter
+
 
 class Solution:
     def mostFrequent(self, nums: list(int), key: int) -> int:
         c = Counter()
         for ix, v in enumerate(nums):
             if v == key and ix + 1 < len(nums):
-                c[nums[ix+1]] += 1
+                c[nums[ix + 1]] += 1
 
         return c.most_common(1)[0][0]

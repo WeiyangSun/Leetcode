@@ -24,18 +24,20 @@ Output: false
 Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 """
 
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         if str(x) == str(x)[::-1]:
             return True
         return False
 
+
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         x = str(x)
-        pointer_A, pointer_B = 0, len(x)-1
+        pointer_A, pointer_B = 0, len(x) - 1
 
-        while pointer_A <= len(x)//2:
+        while pointer_A <= len(x) // 2:
             if x[pointer_A] == x[pointer_B]:
                 pointer_A += 1
                 pointer_B -= 1
@@ -43,6 +45,7 @@ class Solution:
                 return False
 
         return True
+
 
 class Solution:
     def isPalindrome(self, x: int) -> bool:
@@ -54,10 +57,11 @@ class Solution:
 
         while x != 0:
             digit = x % 10
-            reversed_num = reversed_num*10 + digit
+            reversed_num = reversed_num * 10 + digit
             x = x // 10
 
         return original_num == reversed_num
+
 
 sol = Solution()
 print(sol.isPalindrome(-121))

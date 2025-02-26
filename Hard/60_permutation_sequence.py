@@ -29,24 +29,25 @@ Input: n = 3, k = 1
 Output: "123"
 """
 
+
 class Solution:
     def getPermutation(self, n: int, k: int) -> str:
-        #1. Precompute Factorials
-        factorials = [1] * (n+1)
-        for i in range(1, n+1):
-            factorials[i] = factorials[i-1]*i
+        # 1. Precompute Factorials
+        factorials = [1] * (n + 1)
+        for i in range(1, n + 1):
+            factorials[i] = factorials[i - 1] * i
 
-        #2. Prepare list of available digits
-        digits = [str(i) for i in range(1, n+1)]
+        # 2. Prepare list of available digits
+        digits = [str(i) for i in range(1, n + 1)]
 
-        #3. Convert K to zero-based
+        # 3. Convert K to zero-based
         k -= 1
 
-        #4. Build K-th permutation
+        # 4. Build K-th permutation
         result = []
         for i in range(n, 0, -1):
             # Number of permutations for each initial digit (i-1)
-            block_size = factorials[i-1]
+            block_size = factorials[i - 1]
             # Determine which digit should be at the current position
             index = k // block_size
             result.append(digits[index])

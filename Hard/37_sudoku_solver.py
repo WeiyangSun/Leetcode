@@ -34,6 +34,7 @@ Output: [["5","3","4","6","7","8","9","1","2"],
          ["3","4","5","2","8","6","1","7","9"]]
 """
 
+
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
         self.solve(board)
@@ -41,13 +42,13 @@ class Solution:
     def solve(self, board):
         for i in range(9):
             for j in range(9):
-                if board[i][j] == '.':
-                    for num in '123456789':
+                if board[i][j] == ".":
+                    for num in "123456789":
                         if self.isValid(board, i, j, num):
                             board[i][j] = num
                             if self.solve(board):
                                 return True
-                            board[i][j] = '.'  # Backtrack
+                            board[i][j] = "."  # Backtrack
                     return False  # Trigger backtracking
         return True  # Puzzle solved
 
@@ -66,6 +67,7 @@ class Solution:
                 return False
         return True
 
+
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
         """
@@ -73,16 +75,16 @@ class Solution:
         Modifies the board in-place.
         """
         # Data structures to keep track of the numbers in rows, columns, and boxes
-        rows = [set() for _ in range(9)]       # Numbers in each row
-        cols = [set() for _ in range(9)]       # Numbers in each column
-        boxes = [set() for _ in range(9)]      # Numbers in each 3x3 box
-        empty_cells = []                       # List to store the positions of empty cells
+        rows = [set() for _ in range(9)]  # Numbers in each row
+        cols = [set() for _ in range(9)]  # Numbers in each column
+        boxes = [set() for _ in range(9)]  # Numbers in each 3x3 box
+        empty_cells = []  # List to store the positions of empty cells
 
         # Initialize the sets and collect empty cells
         for i in range(9):
             for j in range(9):
                 num = board[i][j]
-                if num != '.':
+                if num != ".":
                     rows[i].add(num)
                     cols[j].add(num)
                     box_index = (i // 3) * 3 + (j // 3)
@@ -107,7 +109,7 @@ class Solution:
                     if backtrack(index + 1):
                         return True
                     # Backtrack if not valid
-                    board[i][j] = '.'
+                    board[i][j] = "."
                     rows[i].remove(num)
                     cols[j].remove(num)
                     boxes[box_index].remove(num)

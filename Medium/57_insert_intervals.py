@@ -26,14 +26,15 @@ Output: [[1,2],[3,10],[12,16]]
 Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 """
 
+
 class Solution:
-    def insert(self, intervals: list[list[int]], newInterval = list[int]) -> list[list[int]]:
+    def insert(self, intervals: list[list[int]], newInterval=list[int]) -> list[list[int]]:
         intervals.append(newInterval)
-        
-        #sort
+
+        # sort
         intervals.sort(key=lambda x: x[0])
         merged = []
-        
+
         for interval in intervals:
             if not merged or merged[-1][1] < interval[0]:
                 merged.append(interval)
@@ -42,8 +43,9 @@ class Solution:
 
         return merged
 
+
 class Solution:
-    def insert(self, intervals: list[list[int]], newInterval = list[int]) -> list[list[int]]:
+    def insert(self, intervals: list[list[int]], newInterval=list[int]) -> list[list[int]]:
 
         merged = []
         i = 0
@@ -56,7 +58,7 @@ class Solution:
 
         # Overlap Case
         editedInterval = newInterval
-        #as long as next interval's start is less than or equal to current merged interval's end - overlap
+        # as long as next interval's start is less than or equal to current merged interval's end - overlap
         while i < n and intervals[i][0] <= editedInterval[1]:
             editedInterval[0] = min(intervals[i][0], editedInterval[0])
             editedInterval[1] = max(intervals[i][1], editedInterval[1])
@@ -67,5 +69,5 @@ class Solution:
         while i < n:
             merged.append(intervals[i])
             i += 1
-        
+
         return merged

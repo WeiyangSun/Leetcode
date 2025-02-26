@@ -32,14 +32,14 @@ Note that the five elements can be returned in any order.
 It does not matter what you leave beyond the returned k (hence they are underscores).
 """
 
+
 class Solution:
     def removeElement(self, nums: list, val: int) -> int:
         i = 0
-        
+
         for j in range(len(nums)):
             if nums[j] != val:
                 nums[i] = nums[j]
                 i += 1
-        
+
         return i
-                

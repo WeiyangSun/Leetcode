@@ -20,15 +20,16 @@ Output: -1
 Explanation: "leeto" did not occur in "leetcode", so we return -1.
 """
 
+
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         if not needle:
             return 0
-        
+
         for i in range(len(haystack) - len(needle) + 1):
-            substring = haystack[i:i+len(needle)]
-            
+            substring = haystack[i : i + len(needle)]
+
             if substring == needle:
                 return i
-        
+
         return -1

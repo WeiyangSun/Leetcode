@@ -30,21 +30,22 @@ Output: -2
 Explanation: 7/-3 = -2.33333.. which is truncated to -2.
 """
 
+
 class Solution:
     def divide(self, dividend: int, divisor: int) -> int:
-        
+
         MAX_INT = 2**31 - 1
-        MIN_INT = -2**31
-        
+        MIN_INT = -(2**31)
+
         if dividend == MIN_INT and divisor == -1:
             return MAX_INT
-        
+
         negative = (dividend < 0) != (divisor < 0)
-        
+
         dividend = abs(dividend)
         divisor = abs(divisor)
         result = 0
-        
+
         while dividend >= divisor:
             temp_divisor = divisor
             multiple = 1
@@ -53,8 +54,8 @@ class Solution:
                 multiple <<= 1
             dividend -= temp_divisor
             result += multiple
-            
+
         if negative:
             result = -result
-        
+
         return max(MIN_INT, min(MAX_INT, result))

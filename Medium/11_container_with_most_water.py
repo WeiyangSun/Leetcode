@@ -26,13 +26,14 @@ Input: height = [1,1]
 Output: 1
 """
 
+
 class Solution:
     def maxArea(self, height: list[int]) -> int:
 
         max_area = 0
         left = 0
         right = len(height) - 1
-        
+
         while left < right:
 
             width = right - left
@@ -45,6 +46,7 @@ class Solution:
                 right -= 1
 
         return max_area
+
 
 class Solution:
     def maxArea(self, height: list[int]) -> int:
@@ -64,10 +66,11 @@ class Solution:
             area_move_right = helper(left, right - 1)
 
             memo[(left, right)] = max(current_area, area_move_left, area_move_right)
-            
+
             return memo[(left, right)]
 
-        return helper(0, n-1)
+        return helper(0, n - 1)
+
 
 sol = Solution()
-print(sol.maxArea(height = [1,8,6,2,5,4,8,3,7]))
+print(sol.maxArea(height=[1, 8, 6, 2, 5, 4, 8, 3, 7]))

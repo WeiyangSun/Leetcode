@@ -35,34 +35,35 @@ Input: s1 = "", s2 = "", s3 = ""
 Output: true
 """
 
+
 class Solution:
     def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
 
         # Exceptions:
         if len(s3) != (len(s1) + len(s2)):
             return False
-        
+
         # Setting up 2-D DP array
         dp = [[False] * (len(s2) + 1) for _ in range(len(s1) + 1)]
-        
+
         # Initialization
         dp[0][0] = True
-        
+
         # Filling the first row
-        for col in range(1, len(s2)+1):
-            dp[0][col] = dp[0][col-1] and s2[col-1] == s3[col-1]
+        for col in range(1, len(s2) + 1):
+            dp[0][col] = dp[0][col - 1] and s2[col - 1] == s3[col - 1]
         # Filling the first col
-        for row in range(1, len(s1)+1):
-            dp[row][0] = dp[row-1][0] and s1[row-1] == s3[row-1]
-        
+        for row in range(1, len(s1) + 1):
+            dp[row][0] = dp[row - 1][0] and s1[row - 1] == s3[row - 1]
+
         # Filling the rest of the DP
-        for row in range(1, len(s1)+1):
-            for col in range(1, len(s2)+1):
+        for row in range(1, len(s1) + 1):
+            for col in range(1, len(s2) + 1):
                 # Matching S1
-                match_s1 = dp[row-1][col] and s1[row-1] == s3[row+col-1]
+                match_s1 = dp[row - 1][col] and s1[row - 1] == s3[row + col - 1]
                 # Matching S2
-                match_s2 = dp[row][col-1] and s2[col-1] == s3[row+col-1]
+                match_s2 = dp[row][col - 1] and s2[col - 1] == s3[row + col - 1]
                 # Combining
                 dp[row][col] = match_s1 or match_s2
-        
+
         return dp[len(s1)][len(s2)]

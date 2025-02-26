@@ -32,6 +32,7 @@ Output: [[0,0,0]]
 Explanation: The only possible triplet sums up to 0.
 """
 
+
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
 
@@ -39,47 +40,52 @@ class Solution:
         positive_numbers = sorted([num for num in nums if num > 0])
         neutral_numbers = [num for num in nums if num == 0]
         plausible_solutions = set()
-        
+
         positive_set = set(positive_numbers)
         negative_set = set(negative_numbers)
 
-        #Rule 1: 2 negative number 1 positive number
+        # Rule 1: 2 negative number 1 positive number
         for i in range(len(negative_numbers)):
-            for j in range(i+1, len(negative_numbers)):
+            for j in range(i + 1, len(negative_numbers)):
                 needed_positive_number = -(negative_numbers[i] + negative_numbers[j])
                 if needed_positive_number in positive_set:
-                    triplet = tuple(sorted([negative_numbers[i], negative_numbers[j], needed_positive_number]))
-                    plausible_solutions.add(triplet)
-                
-        #Rule 2: 2 positive number 1 negative number
-        for i in range(len(positive_numbers)):
-            for j in range(i+1, len(positive_numbers)):
-                needed_negative_number = -(positive_numbers[i] + positive_numbers[j])
-                if needed_negative_number in negative_set:
-                    triplet = tuple(sorted([positive_numbers[i], positive_numbers[j], needed_negative_number]))
+                    triplet = tuple(
+                        sorted([negative_numbers[i], negative_numbers[j], needed_positive_number])
+                    )
                     plausible_solutions.add(triplet)
 
-        #Rule 3: 1 positive number 1 negative number 1 neutral number
+        # Rule 2: 2 positive number 1 negative number
+        for i in range(len(positive_numbers)):
+            for j in range(i + 1, len(positive_numbers)):
+                needed_negative_number = -(positive_numbers[i] + positive_numbers[j])
+                if needed_negative_number in negative_set:
+                    triplet = tuple(
+                        sorted([positive_numbers[i], positive_numbers[j], needed_negative_number])
+                    )
+                    plausible_solutions.add(triplet)
+
+        # Rule 3: 1 positive number 1 negative number 1 neutral number
         if neutral_numbers:
             for each_positive_number in positive_set:
                 if -each_positive_number in negative_set:
-                    plausible_solutions.add((-each_positive_number, 0 , each_positive_number))
+                    plausible_solutions.add((-each_positive_number, 0, each_positive_number))
 
-        #Rule 4: 3 neutral number
+        # Rule 4: 3 neutral number
         if len(neutral_numbers) >= 3:
             plausible_solutions.add((0, 0, 0))
 
         return [list(triplet) for triplet in plausible_solutions]
 
+
 class Solution:
     def threeSum(self, nums: list[int]) -> list[list[int]]:
-        nums.sort() # Sort array to facilitate approach
+        nums.sort()  # Sort array to facilitate approach
         n = len(nums)
         result = []
 
-        for i in range(n-2):
+        for i in range(n - 2):
             # skip duplicates numbers to avoid duplicate triplets
-            if i > 0 and nums[i] == nums[i-1]:
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
             left_pointer = i + 1
@@ -89,12 +95,18 @@ class Solution:
                 total = nums[i] + nums[left_pointer] + nums[right_pointer]
 
                 if total == 0:
-                    result.append([nums[i], nums[left_pointer]. nums[right_pointer]])
-                    
-                    while left_pointer < right_pointer and nums[left_pointer] == nums[left_pointer+1]:
+                    result.append([nums[i], nums[left_pointer].nums[right_pointer]])
+
+                    while (
+                        left_pointer < right_pointer
+                        and nums[left_pointer] == nums[left_pointer + 1]
+                    ):
                         left_pointer += 1
-                    
-                    while left_pointer < right_pointer and nums[right_pointer] == nums[right_pointer-1]:
+
+                    while (
+                        left_pointer < right_pointer
+                        and nums[right_pointer] == nums[right_pointer - 1]
+                    ):
                         right_pointer -= 1
 
                     left_pointer += 1
@@ -107,5 +119,6 @@ class Solution:
 
         return result
 
+
 sol = Solution()
-print(sol.threeSum(nums=[-1,0,1,2,-1,-4]))
+print(sol.threeSum(nums=[-1, 0, 1, 2, -1, -4]))

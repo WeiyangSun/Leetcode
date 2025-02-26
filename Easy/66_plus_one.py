@@ -31,22 +31,24 @@ Explanation: The array represents the integer 9. Incrementing by one gives 9 + 1
 Thus, the result should be [1,0].
 """
 
+
 class Solution:
     def plusOne(self, digits: list[int]) -> list[int]:
         digits = [str(i) for i in digits]
-        number = str(int(''.join(digits)) + 1)
+        number = str(int("".join(digits)) + 1)
         result = [int(char) for char in number]
         return result
+
 
 class Solution:
     def plusOne(self, digits: list[int]) -> list[int]:
 
-        carry = 1 #starting with 1 since it is plusOne problem
+        carry = 1  # starting with 1 since it is plusOne problem
         n = len(digits)
 
         # Moving from the last digit to the first (least significant to most significant)
-        for i in range(n-1, -1, -1):
-            
+        for i in range(n - 1, -1, -1):
+
             new_sum = digits[i] + carry
             digits[i] = new_sum % 10
             carry = new_sum // 10

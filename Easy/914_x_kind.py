@@ -13,6 +13,7 @@ Return true if such partition is possible, or false otherwise.
 
 from collections import Counter
 
+
 class Solution:
     def hasGroupsSizeX(self, deck: list(int)) -> bool:
 
@@ -22,14 +23,17 @@ class Solution:
         if global_min < 2:
             return False
         for i in range(global_min + 1, 1, -1):
-            res = all(v%i == 0 for v in c.values())
+            res = all(v % i == 0 for v in c.values())
             if res:
                 return True
-        
+
         return False
-    
+
+
 import math
 import functools
+
+
 class Solution:
     def hasGroupsSizeX(self, deck: list(int)) -> bool:
 

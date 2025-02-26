@@ -45,8 +45,9 @@ Constraints:
 1 <= prices[i] <= 1000
 """
 
+
 class Solution:
-    def finalPrices(self, prices :list(int)) -> list(int):
+    def finalPrices(self, prices: list(int)) -> list(int):
         n = len(prices)
         res = []
         for i in range(n):
@@ -62,6 +63,7 @@ class Solution:
                 res.append(prices[i])
 
         return res
+
 
 class Solution:
     def finalPrices(self, prices: list(int)) -> list(int):

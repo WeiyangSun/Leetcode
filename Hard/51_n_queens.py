@@ -24,12 +24,13 @@ Input: n = 1
 Output: [["Q"]]
 """
 
+
 class Solution:
     def solveNQueens(self, n: int) -> list[list[str]]:
         solutions = []
-        
-        board = [-1]*n #these are actually 4 columns
-        
+
+        board = [-1] * n  # these are actually 4 columns
+
         def is_safe(row, col):
             for prev_row in range(row):
                 prev_col = board[prev_row]
@@ -46,8 +47,8 @@ class Solution:
             if row == n:
                 result = []
                 for r in range(n):
-                    row_str = ['.']*n
-                    row_str[board[r]] = 'Q'
+                    row_str = ["."] * n
+                    row_str[board[r]] = "Q"
                     result.append("".join(row_str))
                 solutions.append(result)
                 return
@@ -60,11 +61,12 @@ class Solution:
         backtracking(0)
         return solutions
 
+
 class Solution:
     def solveNQueens(self, n: int) -> list[list[str]]:
         solutions = []
         # Initialize the board with -1 (no queen)
-        board = [[-1]*n for _ in range(n)]
+        board = [[-1] * n for _ in range(n)]
 
         def is_safe(row, col):
             # Check the column above current row
@@ -98,7 +100,7 @@ class Solution:
                 for r in range(n):
                     row_str = []
                     for c in range(n):
-                        row_str.append('Q' if board[r][c] == 1 else '.')
+                        row_str.append("Q" if board[r][c] == 1 else ".")
                     solution.append("".join(row_str))
                 solutions.append(solution)
                 return
@@ -113,5 +115,6 @@ class Solution:
         backtrack(0)
         return solutions
 
+
 sol = Solution()
-print(sol.solveNQueens(n = 4))
+print(sol.solveNQueens(n=4))

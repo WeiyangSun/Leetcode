@@ -38,21 +38,24 @@ Explanation:
 This is the base case.
 """
 
+
 class Solution:
     def countAndSay(self, n: int) -> str:
         current_sequence = "1"
-        
-        for _ in range(n-1):
+
+        for _ in range(n - 1):
             next_sequence = ""
             count = 1
-            
+
             for i in range(len(current_sequence)):
-                if (i < len(current_sequence) - 1) and (current_sequence[i] == current_sequence[i+1]):
+                if (i < len(current_sequence) - 1) and (
+                    current_sequence[i] == current_sequence[i + 1]
+                ):
                     count += 1
                 else:
                     next_sequence += str(count) + current_sequence[i]
                     count = 1
-            
+
             current_sequence = next_sequence
 
         return current_sequence

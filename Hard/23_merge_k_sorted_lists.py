@@ -29,13 +29,15 @@ Input: lists = [[]]
 Output: []
 """
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
-    
+
     def __repr__(self):
         return f"{self.val} -> {self.next}"
+
 
 def build_linked_list(lst):
     dummy = ListNode(0)
@@ -46,11 +48,12 @@ def build_linked_list(lst):
         current = current.next
     return dummy.next
 
+
 class Solution:
     def mergeKLists(self, lists: [[ListNode]]) -> [ListNode]:
         flat_dummy = ListNode(0)
         current = flat_dummy
-        
+
         for i in lists:
             linked_list_i = build_linked_list(i)
             while linked_list_i:
@@ -63,13 +66,16 @@ class Solution:
         while current:
             values.append(current.val)
             current = current.next
-        
+
         values.sort()
         output_linked_list = build_linked_list(values)
 
         return output_linked_list.next
 
+
 import heapq
+
+
 class Solution:
     def mergeKLists(self, lists: [[ListNode]]) -> [ListNode]:
         min_heapq = []
@@ -91,5 +97,6 @@ class Solution:
 
         return dummy.next
 
+
 sol = Solution()
-print(sol.mergeKLists(lists=[[1,4,5],[1,3,4],[2,6]]))
+print(sol.mergeKLists(lists=[[1, 4, 5], [1, 3, 4], [2, 6]]))

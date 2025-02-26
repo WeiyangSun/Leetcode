@@ -33,6 +33,7 @@ Explanation: Your function should return k = 5, with the first five elements of 
 It does not matter what you leave beyond the returned k (hence they are underscores).
 """
 
+
 class Solution:
     def removeDuplicates(self, nums: list) -> int:
         if not nums:
@@ -43,8 +44,9 @@ class Solution:
             if nums[i] != nums[j]:
                 i += 1
                 nums[i] = nums[j]
-        
+
         return i + 1
 
+
 sol = Solution()
-print(sol.removeDuplicates(nums=[0,0,1,1,1,2,2,3,3,4]))
+print(sol.removeDuplicates(nums=[0, 0, 1, 1, 1, 2, 2, 3, 3, 4]))

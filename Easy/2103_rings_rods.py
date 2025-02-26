@@ -55,31 +55,35 @@ rings[i] where i is even is either 'R', 'G', or 'B' (0-indexed).
 rings[i] where i is odd is a digit from '0' to '9' (0-indexed).
 """
 
+
 class Solution:
-    def countPoints(self, rings:str) -> int:
-        
+    def countPoints(self, rings: str) -> int:
+
         start_point = 0
         rod_dict = {}
         for ix in range(0, len(rings), 2):
-            rod_string = rings[start_point:ix+2]
+            rod_string = rings[start_point : ix + 2]
             rod_color, rod_num = rod_string[0], rod_string[-1]
             if rod_num in rod_dict.keys():
                 rod_dict[rod_num] += rod_color
             else:
                 rod_dict[rod_num] = rod_color
-            start_point = ix+2
+            start_point = ix + 2
 
         count = 0
         for each_rod in rod_dict.keys():
-            if set(rod_dict[each_rod]) == set('BGR'):
+            if set(rod_dict[each_rod]) == set("BGR"):
                 count += 1
         return count
 
+
 from collections import defaultdict
+
+
 class Solution:
-    def countPoints(self, rings:str) -> int:
+    def countPoints(self, rings: str) -> int:
 
         h = defaultdict(set)
-        for i in range(0, len(rings)-1, 2):
-            h[rings[i+1]].add(rings[i])
+        for i in range(0, len(rings) - 1, 2):
+            h[rings[i + 1]].add(rings[i])
         return sum(len(v) == 3 for v in h.values())

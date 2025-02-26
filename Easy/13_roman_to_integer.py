@@ -47,17 +47,11 @@ Output: 1994
 Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
 """
 
+
 class Solution:
     def romanToInt(self, s: str) -> int:
 
-        roman_to_int = {"I": 1,
-                        "V": 5,
-                        "X": 10,
-                        "L": 50,
-                        "C": 100,
-                        "D": 500,
-                        "M": 1000
-                        }
+        roman_to_int = {"I": 1, "V": 5, "X": 10, "L": 50, "C": 100, "D": 500, "M": 1000}
 
         total = 0
         prev_value = 0
@@ -72,23 +66,25 @@ class Solution:
 
         return total
 
+
 class Solution:
     def romanToInt(self, s: str) -> int:
 
-        roman_to_int = {'I': 1,
-                        'IV': 4,
-                        'V': 5,
-                        'IX': 9,
-                        'X': 10,
-                        'XL': 40,
-                        'L': 50,
-                        'XC': 90,
-                        'C': 100,
-                        'CD': 400,
-                        'D': 500,
-                        'CM': 900,
-                        'M': 1000
-                    }
+        roman_to_int = {
+            "I": 1,
+            "IV": 4,
+            "V": 5,
+            "IX": 9,
+            "X": 10,
+            "XL": 40,
+            "L": 50,
+            "XC": 90,
+            "C": 100,
+            "CD": 400,
+            "D": 500,
+            "CM": 900,
+            "M": 1000,
+        }
 
         i = 0
         total = 0
@@ -96,14 +92,15 @@ class Solution:
 
         while i < n:
             # Check for 2 character symbol:
-            if i + 1 < n and s[i:i+2] in roman_to_int:
-                total += roman_to_int[s[i:i+2]]
+            if i + 1 < n and s[i : i + 2] in roman_to_int:
+                total += roman_to_int[s[i : i + 2]]
                 i += 2
             else:
                 total += roman_to_int[s[i]]
                 i += 1
 
         return total
+
 
 sol = Solution()
 print(sol.romanToInt("MCMXCIV"))

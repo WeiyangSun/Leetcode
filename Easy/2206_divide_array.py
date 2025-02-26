@@ -39,10 +39,12 @@ nums.length == 2 * n
 """
 from collections import Counter
 
+
 class Solution:
     def divideArray(self, nums: list(int)) -> bool:
-        return all(v%2 == 0 for v in Counter(nums).values())
-    
+        return all(v % 2 == 0 for v in Counter(nums).values())
+
+
 class Solution:
     def divideArray(self, nums: list(int)) -> bool:
 
@@ -51,4 +53,4 @@ class Solution:
                 if nums.count(i) % 2 == 1:
                     return False
             return True
-        return False    
+        return False

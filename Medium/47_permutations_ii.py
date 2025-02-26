@@ -15,6 +15,7 @@ Input: nums = [1,2,3]
 Output: [[1,2,3],[1,3,2],[2,1,3],[2,3,1],[3,1,2],[3,2,1]]
 """
 
+
 class Solution:
     def permuteUnique(self, nums: list[int]) -> list[list[int]]:
         nums.sort()
@@ -29,10 +30,10 @@ class Solution:
             for i in range(len(nums)):
                 if number_case[i] == True:
                     continue
-                
-                if i > 0 and nums[i] == nums[i-1] and number_case[i-1] == False:
+
+                if i > 0 and nums[i] == nums[i - 1] and number_case[i - 1] == False:
                     continue
-                
+
                 # 1. Choose
                 current_permutation.append(nums[i])
                 number_case[i] = True
@@ -43,6 +44,6 @@ class Solution:
                 # 3. Backtrack
                 current_permutation.pop()
                 number_case[i] = False
-            
+
         backtracking([])
         return results

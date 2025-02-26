@@ -18,35 +18,37 @@ Input: num1 = "123", num2 = "456"
 Output: "56088"
 """
 
+
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
-        if num1 == '0' or num2 == '0':
-            return '0'
-        
+        if num1 == "0" or num2 == "0":
+            return "0"
+
         m, n = len(num1), len(num2)
-        results = [0] * (m+n)
-        
+        results = [0] * (m + n)
+
         num1 = num1[::-1]
         num2 = num2[::-1]
-        
+
         for i in range(m):
             for j in range(n):
-                mult = int(num1[i])*int(num2[j])
-                results[i+j] += mult
-                results[i+j+1] += results[i+j] // 10
-                results[i+j] %= 10
-        
+                mult = int(num1[i]) * int(num2[j])
+                results[i + j] += mult
+                results[i + j + 1] += results[i + j] // 10
+                results[i + j] %= 10
+
         while len(results) > 1 and results[-1] == 0:
             results.pop()
 
         results = results[::-1]
-        return ''.join(map(str, results))
+        return "".join(map(str, results))
+
 
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         # Edge Case: If either number is '0', return '0'
-        if num1 == '0' or num2 == '0':
-            return '0'
+        if num1 == "0" or num2 == "0":
+            return "0"
 
         m, n = len(num1), len(num2)
         # Initialize result array
@@ -73,5 +75,5 @@ class Solution:
             start += 1
 
         # Convert result to string
-        result_str = ''.join(map(str, result[start:]))
-        return result_str if result_str else '0'
+        result_str = "".join(map(str, result[start:]))
+        return result_str if result_str else "0"

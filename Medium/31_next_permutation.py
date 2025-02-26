@@ -39,28 +39,29 @@ Input: nums = [1,1,5]
 Output: [1,5,1]
 """
 
+
 class Solution:
     def nextPermutation(self, nums: list) -> None:
         """
         Do not return anything, modify nums in-place instead.
         """
-        #Find first decreasing element from the end
-        i = len(nums)-2 #second last element
-        while i > 0 and nums[i] > nums[i+1]:
+        # Find first decreasing element from the end
+        i = len(nums) - 2  # second last element
+        while i > 0 and nums[i] > nums[i + 1]:
             i -= 1
-        
-        #When you find decreasing element
+
+        # When you find decreasing element
         if i >= 0:
-            #Find number just larger than nums[i]
-            j = len(nums) - 1 #last element
+            # Find number just larger than nums[i]
+            j = len(nums) - 1  # last element
             while nums[j] <= nums[i]:
                 j -= 1
-            
-            #When you find it, perform swap
+
+            # When you find it, perform swap
             nums[i], nums[j] = nums[j], nums[i]
-        
-        #Reverse subsequence from i+1 to end
-        left, right = i+1, len(nums)-1
+
+        # Reverse subsequence from i+1 to end
+        left, right = i + 1, len(nums) - 1
         while left < right:
             nums[left], nums[right] = nums[right], nums[left]
             left += 1

@@ -15,10 +15,12 @@ Input: head = [5], left = 1, right = 1
 Output: [5]
 """
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def reverseBetween(self, head: [ListNode], left: int, right: int) -> [ListNode]:
@@ -28,16 +30,15 @@ class Solution:
 
         dummy = ListNode(0)
         dummy.next = head
-        
+
         # Left Pointer:
         prev = dummy
-        for _ in range(left-1):
-            prev = prev.next # moves pointer to just before list reversal point
+        for _ in range(left - 1):
+            prev = prev.next  # moves pointer to just before list reversal point
 
-        start = prev.next # this is the start of the list reversal
-        then = start.next # one after the start of list reversal
-        
-        
+        start = prev.next  # this is the start of the list reversal
+        then = start.next  # one after the start of list reversal
+
         for _ in range(right - left):
             # Step 1: detach 'then' and link 'start' to 'then.next'
             start.next = then.next
@@ -47,5 +48,5 @@ class Solution:
             prev.next = then
             # Step 4: advance 'then'
             then = start.next
-        
+
         return dummy.next

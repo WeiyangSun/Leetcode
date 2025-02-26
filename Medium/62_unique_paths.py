@@ -25,6 +25,7 @@ Explanation: From the top-left corner, there are a total of 3 ways to reach the 
 3. Down -> Right -> Down
 """
 
+
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
 
@@ -41,11 +42,12 @@ class Solution:
         # Start Filling Tables
         for row in range(1, m):
             for col in range(1, n):
-                #If you are at any cell (i, j), you could only have come from the cell above (i-1, j) or the cell to the left (i, j-1).
-                #Hence, the total paths to (i, j) is the sum of the paths to (i-1, j) and to (i, j-1).
+                # If you are at any cell (i, j), you could only have come from the cell above (i-1, j) or the cell to the left (i, j-1).
+                # Hence, the total paths to (i, j) is the sum of the paths to (i-1, j) and to (i, j-1).
                 dp[row][col] = dp[row - 1][col] + dp[row][col - 1]
 
-        return dp[m-1][n-1]
+        return dp[m - 1][n - 1]
+
 
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
@@ -55,22 +57,28 @@ class Solution:
         # Start Filling Tables
         for row in range(1, m):
             for col in range(1, n):
-                #If you are at any cell (i, j), you could only have come from the cell above (i-1, j) or the cell to the left (i, j-1).
-                #Hence, the total paths to (i, j) is the sum of the paths to (i-1, j) and to (i, j-1).
+                # If you are at any cell (i, j), you could only have come from the cell above (i-1, j) or the cell to the left (i, j-1).
+                # Hence, the total paths to (i, j) is the sum of the paths to (i-1, j) and to (i, j-1).
                 dp[row][col] = dp[row - 1][col] + dp[row][col - 1]
 
-        return dp[m-1][n-1]
+        return dp[m - 1][n - 1]
+
 
 # Combinatorial Approach - Binomial Problem (Down or Right)
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         import math
 
-        total_no_of_possible_moves = (m-1) + (n-1)
-        possible_down_moves = (m-1)
-        possible_right_moves = (n-1)
+        total_no_of_possible_moves = (m - 1) + (n - 1)
+        possible_down_moves = m - 1
+        possible_right_moves = n - 1
 
-        return math.factorial(total_no_of_possible_moves) // math.factorial(possible_down_moves) * math.factorial(possible_right_moves)
+        return (
+            math.factorial(total_no_of_possible_moves)
+            // math.factorial(possible_down_moves)
+            * math.factorial(possible_right_moves)
+        )
+
 
 sol = Solution()
 print(sol.uniquePaths(m=3, n=2))

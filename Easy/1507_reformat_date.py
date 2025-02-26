@@ -36,48 +36,54 @@ Constraints:
 The given dates are guaranteed to be valid, so no error handling is necessary.
 """
 
+
 class Solution:
     def reformatDate(self, date: str) -> str:
-        month_dict = {"Jan": "01", 
-                      "Feb": "02",
-                      "Mar": "03",
-                      "Apr": "04",
-                      "May": "05",
-                      "Jun": "06",
-                      "Jul": "07", 
-                      "Aug": "08",
-                      "Sep": "09",
-                      "Oct": "10",
-                      "Nov": "11",
-                      "Dec": "12"}
-        
-        date_list = date.split(' ')
-        
-        day = ('0' + date_list[0][0] if len(date_list[0]) < 4 else date_list[0][:2])
+        month_dict = {
+            "Jan": "01",
+            "Feb": "02",
+            "Mar": "03",
+            "Apr": "04",
+            "May": "05",
+            "Jun": "06",
+            "Jul": "07",
+            "Aug": "08",
+            "Sep": "09",
+            "Oct": "10",
+            "Nov": "11",
+            "Dec": "12",
+        }
+
+        date_list = date.split(" ")
+
+        day = "0" + date_list[0][0] if len(date_list[0]) < 4 else date_list[0][:2]
         month = month_dict[date_list[1]]
         year = date_list[-1]
 
-        return year + '-' + month + '-' + day
-    
+        return year + "-" + month + "-" + day
+
+
 class Solution:
     def reformatDate(self, date: str) -> str:
-        month_dict = {"Jan": "01", 
-                      "Feb": "02",
-                      "Mar": "03",
-                      "Apr": "04",
-                      "May": "05",
-                      "Jun": "06",
-                      "Jul": "07", 
-                      "Aug": "08",
-                      "Sep": "09",
-                      "Oct": "10",
-                      "Nov": "11",
-                      "Dec": "12"}
-        
-        D = ''
+        month_dict = {
+            "Jan": "01",
+            "Feb": "02",
+            "Mar": "03",
+            "Apr": "04",
+            "May": "05",
+            "Jun": "06",
+            "Jul": "07",
+            "Aug": "08",
+            "Sep": "09",
+            "Oct": "10",
+            "Nov": "11",
+            "Dec": "12",
+        }
+
+        D = ""
         if len(date) == 13:
-            D += date[-4:] + '-' + month_dict[date[-8:-5]] + '-' + date[:2]
+            D += date[-4:] + "-" + month_dict[date[-8:-5]] + "-" + date[:2]
         else:
-            D += date[-4:] + '-' + month_dict[date[-8:-5]] + '-0' + date[0]
+            D += date[-4:] + "-" + month_dict[date[-8:-5]] + "-0" + date[0]
 
         return D

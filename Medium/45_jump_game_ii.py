@@ -28,18 +28,19 @@ Input: nums = [2,3,0,1,4]
 Output: 2
 """
 
+
 class Solution:
     def jump(self, nums: list[int]) -> int:
         no_of_jumps = 0
         currentEnd = 0
         farthest = 0
-        
-        for i in range(len(nums)-1):
-            #Farthest that we can reach
-            farthest = max(farthest, i+nums[i])
-            
+
+        for i in range(len(nums) - 1):
+            # Farthest that we can reach
+            farthest = max(farthest, i + nums[i])
+
             if i == currentEnd:
                 no_of_jumps += 1
                 currentEnd = farthest
-        
+
         return no_of_jumps

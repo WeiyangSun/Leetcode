@@ -38,6 +38,7 @@ points[i].length == 2
 1 <= x, y, ai, bi <= 104
 """
 
+
 class Solution:
     def nearestValidPoint(self, x: int, y: int, points: list(list(int))) -> int:
         """
@@ -57,7 +58,7 @@ class Solution:
         """
         min_dist, ans = float("inf"), -1
         for i, (a, b) in enumerate(points):
-            if a == x or b == y: #Valid if it shares the same X or Y as your location
+            if a == x or b == y:  # Valid if it shares the same X or Y as your location
                 cal_dist = abs(a - x) + abs(b - y)
                 if cal_dist < min_dist:
                     min_dist, ans = cal_dist, i

@@ -33,33 +33,32 @@ exention -> exection (replace 'n' with 'c')
 exection -> execution (insert 'u')
 """
 
+
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
         # Lengths of the given words
         n, m = len(word1), len(word2)
-        
+
         # Create a 2D DP array with dimensions (n+1) x (m+1)
         dp = [[0] * (m + 1) for _ in range(n + 1)]
-        
+
         # Initialize the first row and the first column
         for i in range(n + 1):
             dp[i][0] = i  # i deletions to transform word1[:i] to empty word
         for j in range(m + 1):
             dp[0][j] = j  # j insertions to transform empty word to word2[:j]
-        
+
         # Fill the dp table
         for i in range(1, n + 1):
             for j in range(1, m + 1):
-                if word1[i-1] == word2[j-1]:
+                if word1[i - 1] == word2[j - 1]:
                     # Characters match, so no additional cost
-                    dp[i][j] = dp[i-1][j-1]
+                    dp[i][j] = dp[i - 1][j - 1]
                 else:
                     # Characters differ, consider insert, delete, or replace
                     dp[i][j] = 1 + min(
-                        dp[i][j-1],    # Insert
-                        dp[i-1][j],    # Delete
-                        dp[i-1][j-1]   # Replace
+                        dp[i][j - 1], dp[i - 1][j], dp[i - 1][j - 1]  # Insert  # Delete  # Replace
                     )
-        
+
         # The answer is the cost to transform all of word1 into word2
         return dp[n][m]

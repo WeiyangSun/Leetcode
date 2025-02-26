@@ -24,31 +24,35 @@ Input: nums = [2,5,6,0,0,1,2], target = 3
 Output: false
 """
 
+
 class Solution:
     def search(self, nums: list[int], target: int) -> bool:
-        
-        left_pointer, right_pointer = 0, len(nums)-1
-        
+
+        left_pointer, right_pointer = 0, len(nums) - 1
+
         while left_pointer <= right_pointer:
-            
+
             mid_pointer = left_pointer + (right_pointer - left_pointer) // 2
-            
+
             if nums[mid_pointer] == target:
                 return True
-            
+
             # Seeing which side is sorted
-            if nums[left_pointer] < nums[mid_pointer]: #left-side is sorted
+            if nums[left_pointer] < nums[mid_pointer]:  # left-side is sorted
                 if nums[left_pointer] <= target < nums[mid_pointer]:
                     right_pointer = mid_pointer - 1
                 else:
                     left_pointer = mid_pointer + 1
-            elif nums[mid_pointer] < nums[right_pointer]: #right-side is sorted
+            elif nums[mid_pointer] < nums[right_pointer]:  # right-side is sorted
                 if nums[mid_pointer] < target <= nums[right_pointer]:
                     left_pointer = mid_pointer + 1
                 else:
                     right_pointer = mid_pointer - 1
-            else: # Covers duplicate scenario
-                if nums[left_pointer] == nums[mid_pointer] and nums[mid_pointer] == nums[right_pointer]:
+            else:  # Covers duplicate scenario
+                if (
+                    nums[left_pointer] == nums[mid_pointer]
+                    and nums[mid_pointer] == nums[right_pointer]
+                ):
                     left_pointer += 1
                     right_pointer -= 1
                 elif nums[left_pointer] == nums[mid_pointer]:
@@ -61,29 +65,29 @@ class Solution:
 
 class Solution:
     def search(self, nums: list[int], target: int) -> bool:
-        
-        left_pointer, right_pointer = 0, len(nums)-1
-        
+
+        left_pointer, right_pointer = 0, len(nums) - 1
+
         while left_pointer <= right_pointer:
-            
+
             mid_pointer = left_pointer + (right_pointer - left_pointer) // 2
-            
+
             if nums[mid_pointer] == target:
                 return True
-            
+
             if nums[left_pointer] < nums[mid_pointer]:
                 if nums[left_pointer] <= target < nums[mid_pointer]:
                     right_pointer = mid_pointer - 1
                 else:
                     left_pointer = mid_pointer + 1
-            
+
             elif nums[left_pointer] > nums[mid_pointer]:
                 if nums[mid_pointer] < target <= nums[right_pointer]:
                     left_pointer = mid_pointer + 1
                 else:
                     right_pointer = mid_pointer - 1
-            
+
             else:
                 left_pointer += 1
-    
+
         return False

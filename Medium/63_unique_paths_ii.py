@@ -28,6 +28,7 @@ Input: obstacleGrid = [[0,1],[0,0]]
 Output: 1
 """
 
+
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
 
@@ -40,22 +41,22 @@ class Solution:
         if obstacleGrid[no_of_rows - 1][no_of_cols - 1] == 1:
             return 0
 
-        dp = [[0]*no_of_cols for _ in range(no_of_rows)]
-        
+        dp = [[0] * no_of_cols for _ in range(no_of_rows)]
+
         # Base Case
         dp[0][0] = 1
 
         # Top Row
         for col in range(1, no_of_cols):
             if obstacleGrid[0][col] == 0:
-                dp[0][col] = dp[0][col-1]
+                dp[0][col] = dp[0][col - 1]
             else:
                 dp[0][col] = 0
 
         # Left Column
         for row in range(1, no_of_rows):
             if obstacleGrid[row][0] == 0:
-                dp[row][0] = dp[row-1][0]
+                dp[row][0] = dp[row - 1][0]
             else:
                 dp[row][0] = 0
 
@@ -65,9 +66,10 @@ class Solution:
                 if obstacleGrid[row][col] == 1:
                     dp[row][col] = 0
                 else:
-                    dp[row][col] = dp[row-1][col] + dp[row][col-1]
+                    dp[row][col] = dp[row - 1][col] + dp[row][col - 1]
 
-        return dp[no_of_rows-1][no_of_cols-1]
+        return dp[no_of_rows - 1][no_of_cols - 1]
+
 
 class Solution:
     def uniquePathsWithObstacles(self, obstacleGrid: list[list[int]]) -> int:
@@ -77,7 +79,7 @@ class Solution:
         m, n = len(obstacleGrid), len(obstacleGrid[0])
 
         # If the end cell is blocked, return 0 immediately
-        if obstacleGrid[m-1][n-1] == 1:
+        if obstacleGrid[m - 1][n - 1] == 1:
             return 0
 
         # dp array of size n (for columns)
@@ -96,8 +98,8 @@ class Solution:
                     # If not an obstacle and j > 0, add the ways from left (dp[j-1])
                     if j > 0:
                         dp[j] += dp[j - 1]
-                    
-                # dp[j] at the end of this iteration 
+
+                # dp[j] at the end of this iteration
                 # represents number of ways to reach (i, j)
 
-        return dp[n-1]
+        return dp[n - 1]

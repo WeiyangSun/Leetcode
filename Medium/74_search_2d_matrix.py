@@ -21,6 +21,7 @@ Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
 Output: false
 """
 
+
 class Solution:
     def searchMatrix(self, matrix: list[list[int]], target: int) -> bool:
 
@@ -30,14 +31,14 @@ class Solution:
 
         no_of_rows = len(matrix)
         no_of_cols = len(matrix[0])
-        left_pointer, right_pointer = 0, (no_of_rows*no_of_cols) - 1
+        left_pointer, right_pointer = 0, (no_of_rows * no_of_cols) - 1
 
         while left_pointer <= right_pointer:
             mid_pointer = (left_pointer + right_pointer) // 2
 
             row = mid_pointer // no_of_cols
             col = mid_pointer % no_of_cols
-            
+
             if matrix[row][col] == target:
                 return True
             elif matrix[row][col] < target:

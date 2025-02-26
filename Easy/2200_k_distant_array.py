@@ -42,8 +42,9 @@ key is an integer from the array nums.
 1 <= k <= nums.length
 """
 
+
 class Solution:
-    def findKDistantIndices(self, nums:list(int), key:int, k:int) -> list(int):
+    def findKDistantIndices(self, nums: list(int), key: int, k: int) -> list(int):
 
         key_indices = [i for i in range(len(nums)) if nums[i] == key]
 
@@ -51,16 +52,17 @@ class Solution:
 
         for each_ix in key_indices:
             lower_bound = max(0, each_ix - k)
-            upper_bound = min(len(nums)-1, each_ix + k)
+            upper_bound = min(len(nums) - 1, each_ix + k)
 
             for i in range(lower_bound, upper_bound + 1):
-                if abs(i-each_ix) <= k:
+                if abs(i - each_ix) <= k:
                     output_list.append(i)
 
         return sorted(set(output_list))
-    
+
+
 class Solution:
-    def findKDistantIndices(self, nums:list(int), key:int, k:int) -> list(int):
+    def findKDistantIndices(self, nums: list(int), key: int, k: int) -> list(int):
 
         n = len(nums)
         output_list = []

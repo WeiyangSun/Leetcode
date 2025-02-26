@@ -31,42 +31,45 @@ Constraints:
 -104 <= nums[i] <= 104
 """
 
-#Cubic Solution
+
+# Cubic Solution
 class Solution:
-    def maxSubArray(self, nums:list[int]) -> int:
+    def maxSubArray(self, nums: list[int]) -> int:
         n = len(nums)
-        global_max = float('-inf')
+        global_max = float("-inf")
 
         for i in range(n):
             for j in range(i, n):
                 local_max = 0
-                for k in range(i, j+1):
+                for k in range(i, j + 1):
                     local_max += nums[k]
-            
+
                 if local_max > global_max:
                     global_max = local_max
-        
+
         return global_max
+
 
 # Quadratic Solution
 class Solution:
-    def maxSubArray(self, nums:list[int]) -> int:
+    def maxSubArray(self, nums: list[int]) -> int:
         n = len(nums)
-        global_max = float('-inf')
-        
+        global_max = float("-inf")
+
         for i in range(n):
             local_max = 0
             for j in range(i, n):
                 local_max += nums[j]
-            
+
                 if local_max > global_max:
                     global_max = local_max
 
         return global_max
 
+
 # Linear Solution
 class Solution:
-    def maxSubArray(self, nums:list[int]) -> int:
+    def maxSubArray(self, nums: list[int]) -> int:
         n = len(nums)
         local_max, global_max = nums[0], nums[0]
 
@@ -74,23 +77,24 @@ class Solution:
             local_max = max(nums[i], local_max + nums[i])
             if local_max > global_max:
                 global_max = local_max
-        
+
         return global_max
 
 
 # Kadane's Algorithm
 class Solution:
-    def maxSubArray(self, nums:list[int]) -> int:
+    def maxSubArray(self, nums: list[int]) -> int:
         currentSum = maxSum = nums[0]
-        
+
         for i in range(1, len(nums)):
-            #1. Compare and Decide if you should include current number in current sum
-            currentSum = max(currentSum+nums[i], nums[i])
-            
-            #2. Update maxSum if currentSum is bigger
+            # 1. Compare and Decide if you should include current number in current sum
+            currentSum = max(currentSum + nums[i], nums[i])
+
+            # 2. Update maxSum if currentSum is bigger
             maxSum = max(maxSum, currentSum)
 
         return maxSum
 
+
 sol = Solution()
-print(sol.maxSubArray(nums=[-2,1,-3,4,-1,2,1,-5,4]))
+print(sol.maxSubArray(nums=[-2, 1, -3, 4, -1, 2, 1, -5, 4]))

@@ -25,6 +25,7 @@ Explanation: There are three ways to climb to the top.
 3. 2 steps + 1 step
 """
 
+
 class Solution:
     def climbStairs(self, n: int) -> int:
 
@@ -32,13 +33,13 @@ class Solution:
         if n <= 1:
             return 1
 
-        dp = [0] * (n+1) # This would include step 0
+        dp = [0] * (n + 1)  # This would include step 0
         # Base Case
-        dp[0] = 1 # Number of ways to reach step 0 is 1
-        dp[1] = 1 # Number of ways to reach step 1 is 1
+        dp[0] = 1  # Number of ways to reach step 0 is 1
+        dp[1] = 1  # Number of ways to reach step 1 is 1
 
         # Filling up the rest of the DP
-        for i in range(2, n+1):
-            dp[i] = dp[i-1] + dp[i-2]
+        for i in range(2, n + 1):
+            dp[i] = dp[i - 1] + dp[i - 2]
 
         return dp[n]
