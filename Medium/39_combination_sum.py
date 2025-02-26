@@ -32,6 +32,7 @@ Input: candidates = [2], target = 1
 Output: []
 """
 
+
 class Solution:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         result = []
@@ -44,7 +45,7 @@ class Solution:
             # Base Failure Case:
             if current_sum > target:
                 return
-            
+
             # BackTracking
             for i in range(start, len(candidates)):
                 # 1. Choose
@@ -57,29 +58,29 @@ class Solution:
         backtrack(0, [], 0)
         return result
 
+
 class Solution:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         result = []
 
         def backtrack(start, current_combination, remaining_sum):
-            #Base Success Case:
+            # Base Success Case:
             if remaining_sum == 0:
                 result.append(current_combination.copy())
                 return
 
-            #Base Failure Case:
+            # Base Failure Case:
             if remaining_sum < 0:
                 return
 
-            #Backtracking
+            # Backtracking
             for i in range(start, len(candidates)):
-                #1. Choose
+                # 1. Choose
                 current_combination.append(candidates[i])
-                #2. Explore
-                backtrack(i, current_combination, remaining_sum-candidates[i])
-                #3. Backtrack
+                # 2. Explore
+                backtrack(i, current_combination, remaining_sum - candidates[i])
+                # 3. Backtrack
                 current_combination.pop()
 
         backtrack(0, [], target)
         return result
-            

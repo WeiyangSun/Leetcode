@@ -37,10 +37,11 @@ Constraints:
 1 <= stones[i] <= 1000
 """
 
-class Solution:
-    def lastStoneWeight(self, stones:list(int)) -> int:
 
-        #start with initial sorting
+class Solution:
+    def lastStoneWeight(self, stones: list(int)) -> int:
+
+        # start with initial sorting
         sorted_stones = sorted(stones)
         print(sorted_stones)
         while len(sorted_stones) > 1:
@@ -54,17 +55,19 @@ class Solution:
 
         if len(sorted_stones) > 0:
             return sorted_stones[0]
-        
+
         return 0
-    
+
+
 import heapq
+
+
 class Solution:
-    def lastStoneWeight(self, stones:list(int)) -> int:
+    def lastStoneWeight(self, stones: list(int)) -> int:
         h = [-i for i in stones]
         heapq.heapify(h)
 
         while len(h) > 1 and h[0] != 0:
             heapq.heappush(h, heapq.heappop(h) - heapq.heappop(h))
-        
-        return -h[0]
 
+        return -h[0]

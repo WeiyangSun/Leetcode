@@ -20,41 +20,45 @@ Output: [[1]]
 """
 
 from itertools import permutations
-class Solution:
-    def permute(self, nums: list[int]) -> list[list[int]]:
-        
-        list_of_nums = [list(i) for i in permutations(nums)]
-        
-        return list_of_nums
+
 
 class Solution:
     def permute(self, nums: list[int]) -> list[list[int]]:
-        
+
+        list_of_nums = [list(i) for i in permutations(nums)]
+
+        return list_of_nums
+
+
+class Solution:
+    def permute(self, nums: list[int]) -> list[list[int]]:
+
         results = []
         used = [False] * len(nums)
-        
+
         def backtracking(current_permutation):
             # Base Case
             if len(current_permutation) == len(nums):
                 results.append(list(current_permutation))
                 return
 
-            #Backtracking
+            # Backtracking
             for i in range(len(nums)):
                 if not used[i]:
                     # 1. Choose nums[i]
                     current_permutation.append(nums[i])
                     used[i] = True
-                    
+
                     # 2. Explore
                     backtracking(current_permutation)
-                    
+
                     # 3. Backtrack
                     current_permutation.pop()
                     used[i] = False
-    
+
         backtracking([])
         return results
 
+
 sol = Solution()
-print(sol.permute([1,3,2]))
+print(sol.permute([1, 3, 2]))

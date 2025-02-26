@@ -34,7 +34,8 @@ Input: n = 1
 Output: [0,1]
 """
 
+
 class Solution:
     def grayCode(self, n: int) -> list[int]:
-        
-        return [i^(i>>1) for i in range(2**n)]
+
+        return [i ^ (i >> 1) for i in range(2**n)]

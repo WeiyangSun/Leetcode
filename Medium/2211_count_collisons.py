@@ -60,28 +60,32 @@ Constraints:
 directions[i] is either 'L', 'R', or 'S'.
 """
 
+
 class Solution:
     def countCollisions(self, directions: str) -> int:
-        
+
         n = len(directions)
         result, i, carsFromRight = 0, 0, 0
 
         # Resolves Base Case where vehicles all turn left - No collisions
-        while i < n and directions[i] == 'L':
+        while i < n and directions[i] == "L":
             i += 1
-        
+
         # Normal Operations
         while i < n:
-            if directions[i] == 'R':
+            if directions[i] == "R":
                 carsFromRight += 1
             else:
-                result += carsFromRight if directions[i] == 'S' else carsFromRight+1
+                result += carsFromRight if directions[i] == "S" else carsFromRight + 1
                 carsFromRight = 0
-            i+=1
+            i += 1
 
         return result
 
+
 import collections
+
+
 class Solution:
     def alternate_countCollisons(self, directions: str) -> int:
         car_queue = collections.deque(list(directions))
@@ -90,12 +94,12 @@ class Solution:
         # It seems like it is better to perform one task per loop
 
         # Handles the edge case - Where all vehicles turn L
-        while len(car_queue) > 0 and car_queue[0] == 'L':
+        while len(car_queue) > 0 and car_queue[0] == "L":
             car_queue.popleft()
 
         # Handles the edge case - Where all vehicles turn R
-        while len(car_queue) > 0 and car_queue[-1] == 'R':
+        while len(car_queue) > 0 and car_queue[-1] == "R":
             car_queue.pop()
 
         # Ultimately, as long as you perform a turn inside, you will get a collision -  except for stationary
-        return len(car_queue) - car_queue.count('S')
+        return len(car_queue) - car_queue.count("S")

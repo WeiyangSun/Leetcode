@@ -21,36 +21,37 @@ Input: x = 120
 Output: 21
 """
 
+
 class Solution:
     def reverse(self, x: int) -> int:
-        
-        #Edge Case
-        if (x > (2**31 - 1)) or (x < (-2**31)):
+
+        # Edge Case
+        if (x > (2**31 - 1)) or (x < (-(2**31))):
             return 0
-        
+
         negative_flag = False
         if x < 0:
             negative_flag = True
             mod_x = str(x * -1)
         else:
             mod_x = str(x)
-            
-        reversed_x = int(mod_x[::-1]) if not negative_flag else int(mod_x[::-1])*-1
-        
-        if (reversed_x > (2**31 - 1)) or (reversed_x < (-2**31)):
+
+        reversed_x = int(mod_x[::-1]) if not negative_flag else int(mod_x[::-1]) * -1
+
+        if (reversed_x > (2**31 - 1)) or (reversed_x < (-(2**31))):
             return 0
         else:
             return reversed_x
-        
+
 
 class Solution:
     def reverse(self, x: int) -> int:
-        
-        sign = -1 if x<0 else 1
+
+        sign = -1 if x < 0 else 1
         x_abs = abs(x)
         reversed_x = int(str(x_abs)[::-1]) * sign
-        
-        if -2**31 <= reversed_x <= 2**31 -1:
+
+        if -(2**31) <= reversed_x <= 2**31 - 1:
             return reversed_x
         else:
             return 0

@@ -31,6 +31,7 @@ Explanation: Your function should return k = 7, with the first seven elements of
 It does not matter what you leave beyond the returned k (hence they are underscores).
 """
 
+
 class Solution:
     def removeDuplicates(self, nums: list[int]) -> int:
         if len(nums) <= 2:

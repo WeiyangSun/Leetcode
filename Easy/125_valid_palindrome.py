@@ -79,7 +79,7 @@ class ConstantSolution:
                     return False
                 i, j = i + 1, j - 1
                 continue
-            
-            #When encountering non-alphanumeric types, this line helps to skip it
+
+            # When encountering non-alphanumeric types, this line helps to skip it
             i, j = i + (not a.isalnum()), j - (not b.isalnum())
         return True

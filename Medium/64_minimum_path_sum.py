@@ -19,6 +19,7 @@ Input: grid = [[1,2,3],[4,5,6]]
 Output: 12
 """
 
+
 class Solution:
     def minPathSum(self, grid: list[list[int]]) -> int:
 
@@ -27,20 +28,20 @@ class Solution:
 
         no_of_rows = len(grid)
         no_of_cols = len(grid[0])
-        dp = [[0]*no_of_cols for _ in range(no_of_rows)]
+        dp = [[0] * no_of_cols for _ in range(no_of_rows)]
 
         # Setting Base Case
         dp[0][0] = grid[0][0]
 
         # Setting Top Row
         for col in range(1, no_of_cols):
-            dp[0][col] = dp[0][col-1] + grid[0][col]
+            dp[0][col] = dp[0][col - 1] + grid[0][col]
         # Setting Left Col
         for row in range(1, no_of_rows):
-            dp[row][0] = dp[row-1][0] + grid[row][0]
+            dp[row][0] = dp[row - 1][0] + grid[row][0]
 
         for row in range(1, no_of_rows):
             for col in range(1, no_of_cols):
-                dp[row][col] = grid[row][col] + min(dp[row-1][col], dp[row][col-1])
+                dp[row][col] = grid[row][col] + min(dp[row - 1][col], dp[row][col - 1])
 
-        return dp[no_of_rows-1][no_of_cols-1]
+        return dp[no_of_rows - 1][no_of_cols - 1]

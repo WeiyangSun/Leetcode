@@ -57,12 +57,13 @@ Output:
 ]
 """
 
+
 class Solution:
     def fullJustify(self, words: list[str], maxWidth: int) -> list[str]:
         result = []
         current_line_words = []
         current_line_length = 0
-        
+
         for word in words:
             # if adding in current word into existing word line would exceed max width
             if current_line_length + len(word) + len(current_line_words) > maxWidth:
@@ -71,7 +72,7 @@ class Solution:
                 gap_count = len(current_line_words) - 1
                 # if no word gaps available because it is a single word
                 if gap_count == 0:
-                    line = current_line_words[0] + (' '*spaces_to_fill)
+                    line = current_line_words[0] + (" " * spaces_to_fill)
 
                 else:
                     # figuring out how to distribute whitespaces evenly
@@ -86,11 +87,11 @@ class Solution:
                         # For the first extra spaces gaps, add one extra space
                         spaces = base_spaces + (1 if i < extra_spaces else 0)
                         # Then append whitespaces
-                        line_parts.append(' '*spaces)
+                        line_parts.append(" " * spaces)
                     # Adding in the last word
                     line_parts.append(current_line_words[-1])
-                    line = ''.join(line_parts)
-                
+                    line = "".join(line_parts)
+
                 result.append(line)
                 # Performing Reset for a new line
                 current_line_words = []
@@ -102,9 +103,9 @@ class Solution:
 
         # Handling the last line (left-justified)
         if current_line_words:
-            line = ' '.join(current_line_words)
+            line = " ".join(current_line_words)
             spaces_left = maxWidth - len(line)
-            line += ' '*spaces_left
+            line += " " * spaces_left
             result.append(line)
 
         return result

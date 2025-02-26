@@ -26,17 +26,19 @@ Output: 6
 Explanation: The last word is "joyboy" with length 6.
 """
 
+
 class Solution:
     def lengthOfLastWord(self, s: str) -> int:
-        
+
         cleaned_s = s.strip()
-        
+
         if not cleaned_s:
             return 0
-        
-        list_of_words = cleaned_s.split(' ')
-        
+
+        list_of_words = cleaned_s.split(" ")
+
         return len(list_of_words[-1])
+
 
 sol = Solution()
 print(sol.lengthOfLastWord(s="luffy is still joyboy"))

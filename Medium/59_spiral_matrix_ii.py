@@ -15,12 +15,13 @@ Input: n = 1
 Output: [[1]]
 """
 
+
 class Solution:
     def generateMatrix(self, n: int) -> list[list[int]]:
 
-        matrix = [[0]*n for _ in range(n)]
-        top, bottom = 0, n-1
-        left, right = 0, n-1
+        matrix = [[0] * n for _ in range(n)]
+        top, bottom = 0, n - 1
+        left, right = 0, n - 1
 
         num = 1
 

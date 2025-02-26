@@ -26,12 +26,16 @@ Constraints:
 -109 <= nums[i] <= 109
 """
 
+
 class Solution:
-    def containsDuplicate(self, nums:list[int]) -> bool:
-        return (len(nums) != len(set(nums)))
+    def containsDuplicate(self, nums: list[int]) -> bool:
+        return len(nums) != len(set(nums))
+
 
 from collections import Counter
+
+
 class Solution:
-    def containsDuplicate(self, nums:list[int]) -> bool:
+    def containsDuplicate(self, nums: list[int]) -> bool:
         dict = Counter(nums)
         return any(i > 1 for i in dict.values())

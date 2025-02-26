@@ -18,6 +18,7 @@ Input: heights = [2,4]
 Output: 4
 """
 
+
 class Solution:
     def largestRectangleArea(self, heights: list[int]) -> int:
         # Add sentinel height to force stack to empty at the end
@@ -27,16 +28,16 @@ class Solution:
         max_area = 0
 
         for ix, h in enumerate(heights):
-            #while current bar is lower than top bar in stack, pop and calculate
+            # while current bar is lower than top bar in stack, pop and calculate
             while stack and heights[stack[-1]] > h:
                 top_index = stack.pop()
                 height_of_bar = heights[top_index]
-                
+
                 # if stack is empty width is i
                 if not stack:
                     width = ix
                 else:
-                    width = ix - stack[-1] -1
+                    width = ix - stack[-1] - 1
 
                 # Calculate area
                 area = height_of_bar * width
@@ -52,7 +53,7 @@ class Solution:
 class Solution:
     def largestRectangleArea(self, heights: list[int]) -> int:
 
-        stack = [-1] #Used for sentinel cases
+        stack = [-1]  # Used for sentinel cases
         n = len(heights)
         max_area = 0
 
@@ -61,13 +62,13 @@ class Solution:
             while stack[-1] != -1 and heights[stack[-1]] >= heights[i]:
                 current_height = heights[stack.pop()]
                 current_width = i - stack[-1] - 1
-                max_area = max(max_area, current_height*current_width)
+                max_area = max(max_area, current_height * current_width)
             stack.append(i)
 
         # Handling remaining bars in stack
         while stack[-1] != -1:
             current_height = heights[stack.pop()]
             current_width = n - stack[-1] - 1
-            max_area = max(max_area, current_height*current_width)
-    
+            max_area = max(max_area, current_height * current_width)
+
         return max_area

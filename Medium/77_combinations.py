@@ -21,23 +21,24 @@ Output: [[1]]
 Explanation: There is 1 choose 1 = 1 total combination.
 """
 
+
 class Solution:
     def combine(self, n: int, k: int) -> list[list[int]]:
-        
+
         results = []
-        
+
         def backtracking(start, current_combination):
-            
+
             if len(current_combination) == k:
                 results.append(current_combination[:])
                 return
-            
-            for i in range(start, n+1):
+
+            for i in range(start, n + 1):
                 # Explore
                 current_combination.append(i)
-                #Backtrack
-                backtracking(i+1, current_combination)
-                #Remove
+                # Backtrack
+                backtracking(i + 1, current_combination)
+                # Remove
                 current_combination.pop()
 
         backtracking(1, [])

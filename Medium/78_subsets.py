@@ -16,22 +16,22 @@ Input: nums = [0]
 Output: [[],[0]]
 """
 
+
 class Solution:
     def subsets(self, nums: list[int]) -> list[list[int]]:
         results = []
-        
+
         def backtracking(start, current_subset):
             # Record current_subset
             results.append(list(current_subset))
-        
+
             for i in range(start, len(nums)):
                 # Choose
                 current_subset.append(nums[i])
                 # Explore
-                backtracking(i+1, current_subset)
+                backtracking(i + 1, current_subset)
                 # Backtrack
                 current_subset.pop()
-        
+
         backtracking(0, [])
         return results
-            

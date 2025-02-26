@@ -43,10 +43,12 @@ banned[i] consists of only lowercase English letters.
 """
 import re
 from collections import Counter
+
+
 class Solution:
-    def mostCommonWord(self, paragraph:str, banned:list(str)) -> str:
+    def mostCommonWord(self, paragraph: str, banned: list(str)) -> str:
         cleaned_paragraph = re.sub("[!?',;.]", " ", paragraph)
-        cleaned_paragraph_list = cleaned_paragraph.lower().split(' ')
+        cleaned_paragraph_list = cleaned_paragraph.lower().split(" ")
         cleaned_paragraph_list = [x.strip() for x in cleaned_paragraph_list if len(x) != 0]
         cleaned_paragraph_list = [x for x in cleaned_paragraph_list if x not in banned]
 
@@ -54,9 +56,10 @@ class Solution:
 
         return [key for key, val in c.items() if val == max(c.values())][0]
 
+
 class Solution:
-    def mostCommonWord(self, paragraph:str, banned:list(str)) -> str:
-        cleaned_paragraph_list = re.sub("[!?',;.]", " ", paragraph).lower().split(' ')
+    def mostCommonWord(self, paragraph: str, banned: list(str)) -> str:
+        cleaned_paragraph_list = re.sub("[!?',;.]", " ", paragraph).lower().split(" ")
         cleaned_paragraph_list = [x.strip() for x in cleaned_paragraph_list if len(x) != 0]
         cleaned_paragraph_list = [x for x in cleaned_paragraph_list if x not in banned]
 
@@ -64,10 +67,11 @@ class Solution:
 
         return c.most_common(1)[0][0]
 
+
 class Solution:
-    def mostCommonWord(self, paragraph:str, banned:list(str)) -> str:
+    def mostCommonWord(self, paragraph: str, banned: list(str)) -> str:
         ban = set(banned)
-        words = re.findall(r'\w+', paragraph.lower())
+        words = re.findall(r"\w+", paragraph.lower())
         c = Counter(w for w in words if w not in ban)
 
         return c.most_common(1)[0][0]

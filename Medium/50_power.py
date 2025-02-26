@@ -20,22 +20,24 @@ Output: 0.25000
 Explanation: 2-2 = 1/22 = 1/4 = 0.25
 """
 
+
 class Solution:
     def myPow(self, x: float, n: int) -> float:
-        
+
         if n == 0:
             return 1.0
-        
+
         abs_n = abs(n)
 
         total = x
         for _ in range(1, abs_n):
             total *= x
-                
+
         if n < 0:
-            total = 1/total
-        
+            total = 1 / total
+
         return total
+
 
 class Solution:
     def myPow(self, x: float, n: int) -> float:
@@ -54,12 +56,12 @@ class Solution:
                 result *= x
 
             # square x for the next bit
-            x = x*x
+            x = x * x
 
             # move on to the next bit by halving n
-            n = n//2
-        
+            n = n // 2
+
         if negative:
-            result = 1.0/result
+            result = 1.0 / result
 
         return result

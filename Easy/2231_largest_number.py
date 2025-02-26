@@ -31,6 +31,7 @@ Constraints:
 1 <= num <= 109
 """
 
+
 class Solution:
     def largestInteger(self, num: int) -> int:
         n = len(str(num))
@@ -38,19 +39,19 @@ class Solution:
         odd_list, even_list = [], []
 
         for num in num_list:
-            if num % 2 == 0: 
+            if num % 2 == 0:
                 even_list.append(num)
             else:
                 odd_list.append(num)
-        
+
         odd_list.sort()
         even_list.sort()
 
         result = 0
         for i in range(n):
             if num_list[i] % 2 == 0:
-                result = result*10 + even_list.pop() #multiplied by 10 to move 10s, 100s etc.
+                result = result * 10 + even_list.pop()  # multiplied by 10 to move 10s, 100s etc.
             else:
-                result = result*10 + odd_list.pop()
+                result = result * 10 + odd_list.pop()
 
         return result

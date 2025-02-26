@@ -24,6 +24,7 @@ Explanation: The square root of 8 is 2.82842..., and since we round it down to t
 nearest integer, 2 is returned.
 """
 
+
 class Solution:
     def mySqrt(self, x: int) -> int:
 
@@ -35,16 +36,16 @@ class Solution:
 
         while left <= right:
             mid = (left + right) // 2
-            mid_sq = mid*mid
+            mid_sq = mid * mid
 
             if mid_sq == x:
                 return mid
             elif mid_sq < x:
-                if (mid+1 * mid+1) > x:
+                if (mid + 1 * mid + 1) > x:
                     return mid
                 else:
-                    left = mid+1
+                    left = mid + 1
             else:
-                right = mid-1
+                right = mid - 1
 
         return -1

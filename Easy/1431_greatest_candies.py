@@ -37,17 +37,20 @@ Input: candies = [12,1,12], extraCandies = 10
 Output: [true,false,true]
 """
 
+
 class Solution:
-    def kidsWithCandies(self, candies: list(int), extraCandies:int) -> list(bool):
+    def kidsWithCandies(self, candies: list(int), extraCandies: int) -> list(bool):
         current_max = max(candies)
         return [True if i + extraCandies > current_max else False for i in candies]
-    
+
+
 class Solution:
-    def kidsWithCandies(self, candies: list(int), extraCandies:int) -> list(bool):
+    def kidsWithCandies(self, candies: list(int), extraCandies: int) -> list(bool):
         current_max = max(candies)
-        return [i+extraCandies >= current_max for i in candies]
-    
+        return [i + extraCandies >= current_max for i in candies]
+
+
 class Solution:
-    def kidsWithCandies(self, candies: list(int), extraCandies:int) -> list(bool):
+    def kidsWithCandies(self, candies: list(int), extraCandies: int) -> list(bool):
         threshold = max(candies) - extraCandies
         return [i >= threshold for i in candies]

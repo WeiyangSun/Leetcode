@@ -22,16 +22,18 @@ Input: root = [1]
 Output: [1]
 """
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 class Solution:
     def inorderTraversal(self, root: [TreeNode]) -> [int]:
         result = []
-        
+
         def inorder(node):
             if not node:
                 return

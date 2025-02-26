@@ -26,28 +26,29 @@ Input: s = "101023"
 Output: ["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"
 """
 
+
 class Solution:
     def restoreIpAddresses(self, s: str) -> list[str]:
-        
+
         results = []
-        
+
         def backtracking(start_index, combinations):
             if start_index == len(s) and len(combinations) == 4:
                 results.append(".".join(combinations))
                 return
-            
+
             for length in range(1, 4):
                 if start_index + length > len(s):
                     break
 
-                segment = s[start_index:start_index+length]
-            
-                if segment[0] == '0' and len(segment) > 1:
+                segment = s[start_index : start_index + length]
+
+                if segment[0] == "0" and len(segment) > 1:
                     continue
-                
+
                 if int(segment) <= 255:
                     combinations.append(segment)
-                    backtracking(start_index+length, combinations)
+                    backtracking(start_index + length, combinations)
                     combinations.pop()
 
         backtracking(0, [])

@@ -40,6 +40,7 @@ rounds.length == m + 1
 rounds[i] != rounds[i + 1] for 0 <= i < m
 """
 
+
 class Solution:
     def mostVisited(self, n: int, rounds: list[int]) -> list[int]:
 
@@ -48,11 +49,11 @@ class Solution:
 
         # Track is Traversed Completely then Start and End will be the most visited
         if end >= start:
-            return [i for i in range(start, end+1)]
+            return [i for i in range(start, end + 1)]
         # Track is Traversed Partially
         else:
             track_container = []
-            for each_sector in range(1, n+1):
+            for each_sector in range(1, n + 1):
                 if each_sector <= end or each_sector >= start:
                     track_container.append(each_sector)
             return sorted(track_container)

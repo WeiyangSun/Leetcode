@@ -18,6 +18,7 @@ Output: ""
 Explanation: There is no common prefix among the input strings.
 """
 
+
 class Solution:
     def longestCommonPrefix(self, s: list[str]) -> str:
 
@@ -36,6 +37,7 @@ class Solution:
 
         return common_prefix
 
+
 class Solution:
     def longestCommonPrefix(self, s: list[str]) -> str:
 
@@ -47,8 +49,8 @@ class Solution:
         common_prefix = []
 
         for i in range(min_word_length):
-            current_char = s[0][i] #takes first word i-th character
-            
+            current_char = s[0][i]  # takes first word i-th character
+
             if all(word[i] == current_char for word in s):
                 common_prefix.append(current_char)
             else:
@@ -56,5 +58,6 @@ class Solution:
 
         return "".join(common_prefix)
 
+
 sol = Solution()
-print(sol.longestCommonPrefix(s=["flower","flow","flight"]))
+print(sol.longestCommonPrefix(s=["flower", "flow", "flight"]))

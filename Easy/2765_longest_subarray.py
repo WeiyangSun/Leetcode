@@ -39,11 +39,12 @@ Constraints:
 1 <= nums[i] <= 104
 """
 
+
 class Solution:
-    def alternatingSubarray(self, nums:list(int)) ->  int:
+    def alternatingSubarray(self, nums: list(int)) -> int:
 
         n = len(nums)
-        diff = [nums[i] - nums[i-1] for i in range(1, n)]
+        diff = [nums[i] - nums[i - 1] for i in range(1, n)]
         dp = [0] * len(diff)
 
         if diff[0] == 1:
@@ -51,29 +52,30 @@ class Solution:
 
         for i in range(1, len(diff)):
             if diff[i] == 1:
-                if diff[i-1] == -1 and dp[i-1] > 1:
-                    dp[i] = dp[i-1] + 1
+                if diff[i - 1] == -1 and dp[i - 1] > 1:
+                    dp[i] = dp[i - 1] + 1
                 else:
                     dp[i] = 1
 
             elif diff[i] == -1:
-                if diff[i-1] == 1:
-                    dp[i] = dp[i-1] + 1
+                if diff[i - 1] == 1:
+                    dp[i] = dp[i - 1] + 1
 
         return max(dp) + 1 if max(dp) >= 1 else -1
 
+
 class Solution:
-    def alternatingSubarray(self, nums:list(int)) ->  int:
+    def alternatingSubarray(self, nums: list(int)) -> int:
 
         n = len(nums)
         res = dp = -1
 
         for i in range(1, n):
-            if dp > 0 and nums[i] == nums[i-2]:
+            if dp > 0 and nums[i] == nums[i - 2]:
                 dp += 1
             else:
-                dp = 2 if nums[i] == nums[i-1] + 1 else -1
-        
+                dp = 2 if nums[i] == nums[i - 1] + 1 else -1
+
         res = max(res, dp)
 
         return res

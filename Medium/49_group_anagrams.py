@@ -24,13 +24,14 @@ Input: strs = ["a"]
 Output: [["a"]]
 """
 
+
 class Solution:
     def groupAnagrams(self, strs: list[str]) -> list[list[str]]:
         hash_map = {}
 
         for i in strs:
             sorted_word_tuple = tuple(sorted(i))
-            
+
             if sorted_word_tuple not in hash_map.keys():
                 hash_map[sorted_word_tuple] = []
 
@@ -38,5 +39,6 @@ class Solution:
 
         return list(hash_map.values())
 
+
 sol = Solution()
-print(sol.groupAnagrams(strs = ["eat","tea","tan","ate","nat","bat"]))
+print(sol.groupAnagrams(strs=["eat", "tea", "tan", "ate", "nat", "bat"]))

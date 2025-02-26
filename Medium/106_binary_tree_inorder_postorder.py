@@ -15,11 +15,13 @@ Input: inorder = [-1], postorder = [-1]
 Output: [-1]
 """
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
+
 
 class Solution:
     def buildTree(self, inorder: list[int], postorder: list[int]) -> [TreeNode]:
@@ -36,7 +38,7 @@ class Solution:
         # Left Tree - InOrder
         left_tree_inorder = inorder[:root_idx_inorder]
         # Right Tree - InOrder
-        right_tree_inorder = inorder[root_idx_inorder+1:]
+        right_tree_inorder = inorder[root_idx_inorder + 1 :]
 
         # POSTORDER
         left_tree_size = len(left_tree_inorder)
@@ -51,6 +53,7 @@ class Solution:
 
         return root
 
+
 class Solution:
     def buildTree(self, inorder: list[int], postorder: list[int]) -> [TreeNode]:
 
@@ -60,22 +63,31 @@ class Solution:
         # Build Map to get index of a node val in the inorder array
         inorder_map = {v: ix for ix, v in enumerate(inorder)}
 
+        # function will operate on subrange of inorder and postorder
         def helper(inorder_left, inorder_right, postorder_left, postorder_right):
-            # If no elements in subtree
+            # if left pointer crosses right pointer - Not Valid
             if inorder_left > inorder_right or postorder_left > postorder_right:
                 return None
 
+            # Get Root Value
             root_val = postorder[postorder_right]
             root = TreeNode(root_val)
+            root_idx = inorder_map[root_val]
 
-            root_val_idx = inorder_map[root_val]
-            # size of left subtree
-            left_tree_size = root_val_idx - inorder_left
+            left_subtree_size = root_idx - inorder_left
 
-            # Recursive
-            root.left = helper(inorder_left, root_val_idx-1, postorder_left, postorder_left+left_tree_size-1)
-            root.right = helper(root_val_idx+1, inorder_right, postorder_left+left_tree_size, postorder_right-1)
+            # Recursively build left subtree
+            root.left = helper(
+                inorder_left, root_idx - 1, postorder_left, postorder_left + left_subtree_size - 1
+            )
+            # Recursively build right subtree
+            root.right = helper(
+                root_idx + 1,
+                inorder_right,
+                postorder_left + left_subtree_size,
+                postorder_right - 1,
+            )
 
             return root
 
-        return helper(0, len(inorder)-1, 0, len(postorder)-1)
+        return helper(0, len(inorder) - 1, 0, len(postorder) - 1)

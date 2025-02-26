@@ -39,9 +39,9 @@ Output: false
 """
 import re
 
+
 class Solution:
     def isNumber(self, s: str) -> bool:
-
         """
         ^\s*             # Start of string, followed by any number of whitespaces
         [+-]?            # An optional '+' or '-'
@@ -54,17 +54,18 @@ class Solution:
         \s*$             # Any number of whitespaces till the end of string
         """
 
-        pattern_string = r'^\s*[+-]?(\d+(\.\d*)?|(\.\d+))([eE][+-]?\d+)?\s$'
+        pattern_string = r"^\s*[+-]?(\d+(\.\d*)?|(\.\d+))([eE][+-]?\d+)?\s$"
         pattern = re.compile(pattern_string)
 
         return bool(pattern.match(s))
+
 
 class Solution:
     def isNumber(self, s: str) -> bool:
         # Trim out Whitespaces
         s = s.strip()
         if not s:
-            return False # Nothing left after trimming whitespaces
+            return False  # Nothing left after trimming whitespaces
 
         # Flags
         seenDigit = False
@@ -75,7 +76,7 @@ class Solution:
         ix = 0
 
         # Checking for positive or negative signs
-        if ix < n and (s[ix] == '+' or s[ix] == '-'):
+        if ix < n and (s[ix] == "+" or s[ix] == "-"):
             ix += 1
 
         # Checking Digits and Decimals
@@ -84,26 +85,26 @@ class Solution:
             if chr.isdigit():
                 seenDigit = True
                 ix += 1
-            elif chr == '.':
+            elif chr == ".":
                 if seenDecimal or seenExponent:
                     return False
                 seenDecimal = True
                 ix += 1
-            else: # Not a digit or a decimal
+            else:  # Not a digit or a decimal
                 break
 
         # Checking Exponent
-        if ix < n and (s[ix] == 'e' or s[ix] == 'E'):
-            if seenDigit: # Did not see any digits before Exponent
+        if ix < n and (s[ix] == "e" or s[ix] == "E"):
+            if seenDigit:  # Did not see any digits before Exponent
                 return False
             seenExponent = True
             ix += 1
 
             # Optional: Sign after Exponent
-            if ix < n and (s[ix] == '+' or s[ix] == '-'):
+            if ix < n and (s[ix] == "+" or s[ix] == "-"):
                 ix += 1
 
-            if ix == n: # must see at least one digit after exponent
+            if ix == n:  # must see at least one digit after exponent
                 return False
 
             # Flag to check for digits after Exponent

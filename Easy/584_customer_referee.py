@@ -50,4 +50,4 @@ FROM Customer
 WHERE COALESCE(referee_id, 0) != 2
 """
 
-#Coalesce replaces all the null values in referee_id with 0s.
+# Coalesce replaces all the null values in referee_id with 0s.

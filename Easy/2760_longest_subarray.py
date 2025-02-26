@@ -52,19 +52,20 @@ Constraints:
 1 <= threshold <= 100
 """
 
+
 class Solution:
-    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
+    def longestAlternatingSubarray(self, nums: list(int), threshold: int) -> int:
         starting_points = [ix for ix, v in enumerate(nums) if v % 2 == 0 and v <= threshold]
         ending_points = [ix for ix, v in enumerate(nums) if v <= threshold]
         length_list = [0]
         for each_start_point in starting_points:
             for each_ending_point in ending_points:
                 if 0 <= each_start_point <= each_ending_point <= len(nums):
-                    eligible_list = nums[each_start_point: each_ending_point+1]
+                    eligible_list = nums[each_start_point : each_ending_point + 1]
                     if any(i > threshold for i in eligible_list):
                         continue
                     flag = True
-                    for i in range(len(eligible_list)-1):
+                    for i in range(len(eligible_list) - 1):
                         if eligible_list[i] % 2 == eligible_list[i + 1] % 2:
                             flag = False
                             break
@@ -73,8 +74,9 @@ class Solution:
 
         return max(length_list)
 
+
 class Solution:
-    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
+    def longestAlternatingSubarray(self, nums: list(int), threshold: int) -> int:
         starting_points = [ix for ix, v in enumerate(nums) if v % 2 == 0 and v <= threshold]
         ending_points = [ix for ix, v in enumerate(nums) if v <= threshold]
         max_length = 0
@@ -82,31 +84,32 @@ class Solution:
         for each_start_point in starting_points:
             for each_ending_point in ending_points:
                 if each_start_point <= each_ending_point:
-                    eligible_list = nums[each_start_point: each_ending_point + 1]
+                    eligible_list = nums[each_start_point : each_ending_point + 1]
                     if all(i <= threshold for i in eligible_list):
                         if self.isAlternating(eligible_list):
                             max_length = max(max_length, len(eligible_list))
 
         return max_length
 
-    def isAlternating(self, arr:list(int)) -> bool:
+    def isAlternating(self, arr: list(int)) -> bool:
         for i in range(len(arr) - 1):
             if arr[i] % 2 == arr[i + 1] % 2:
                 return False
         return True
 
+
 class Solution:
-    def longestAlternatingSubarray(self, nums:list(int), threshold:int) -> int:
+    def longestAlternatingSubarray(self, nums: list(int), threshold: int) -> int:
         ans = i = 0
-        last = float('inf')
+        last = float("inf")
 
         while i < len(nums):
             # Resets Counter for Subarray
-            if nums[i] > threshold or (i > 0 and (nums[i]%2) == (nums[i-1]%2)):
+            if nums[i] > threshold or (i > 0 and (nums[i] % 2) == (nums[i - 1] % 2)):
                 ans = max(ans, i - last)
-                last = float('inf')
+                last = float("inf")
             # Sets start of Counter for Subarray
-            if last == float('inf') and nums[i] <= threshold and (nums[i]%2) == 0:
+            if last == float("inf") and nums[i] <= threshold and (nums[i] % 2) == 0:
                 last = i
             i += 1
 

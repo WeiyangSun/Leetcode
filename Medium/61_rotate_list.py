@@ -14,10 +14,12 @@ Input: head = [0,1,2], k = 4
 Output: [2,0,1]
 """
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class Solution:
     def rotateRight(self, head: [ListNode], k: int) -> [ListNode]:
@@ -34,7 +36,7 @@ class Solution:
 
         # Adjusting k % length_of_linked_list == rotating linked_list by k
         k = k % length_of_linked_list
-        if k == 0: # Effectively no rotation is needed
+        if k == 0:  # Effectively no rotation is needed
             return head
 
         # Finding the new tail

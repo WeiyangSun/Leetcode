@@ -21,6 +21,7 @@ Input: nums = [2,2,2,2,2], target = 8
 Output: [[2,2,2,2]]
 """
 
+
 class Solution:
     def fourSum(self, nums: list[int], target: int) -> list[list[int]]:
 
@@ -28,23 +29,23 @@ class Solution:
         n = len(nums)
         result = []
 
-        for i in range(n-3):
-            if i > 0 and nums[i] == nums[i-1]:
+        for i in range(n - 3):
+            if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
             # Early Termination as not possible to solve
-            if nums[i] + nums[i+1] + nums[i+2] + nums[i+3] > target:
+            if nums[i] + nums[i + 1] + nums[i + 2] + nums[i + 3] > target:
                 break
             # Early Continuation
-            if nums[i] + nums[n-3] + nums[n-2] + nums[n-1] < target:
+            if nums[i] + nums[n - 3] + nums[n - 2] + nums[n - 1] < target:
                 continue
 
-            for j in range(i+1, n-2):
-                if j > i+1 and nums[j] == nums[j-1]:
+            for j in range(i + 1, n - 2):
+                if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
 
-                left_pointer = j+1
-                right_pointer = n-1
+                left_pointer = j + 1
+                right_pointer = n - 1
 
                 if nums[i] + nums[j] + nums[left_pointer] + nums[left_pointer + 1] > target:
                     break
@@ -58,9 +59,15 @@ class Solution:
                     if total == target:
                         result.append([nums[i], nums[j], nums[left_pointer], nums[right_pointer]])
 
-                        while left_pointer < right_pointer and nums[left_pointer] == nums[left_pointer + 1]:
+                        while (
+                            left_pointer < right_pointer
+                            and nums[left_pointer] == nums[left_pointer + 1]
+                        ):
                             left_pointer += 1
-                        while left_pointer < right_pointer and nums[right_pointer] == nums[right_pointer - 1]:
+                        while (
+                            left_pointer < right_pointer
+                            and nums[right_pointer] == nums[right_pointer - 1]
+                        ):
                             right_pointer -= 1
 
                         left_pointer += 1
@@ -70,8 +77,9 @@ class Solution:
                         left_pointer += 1
                     else:
                         right_pointer -= 1
-                        
+
         return result
 
+
 sol = Solution()
-print(sol.fourSum(nums = [1,0,-1,0,-2,2], target = 0))
+print(sol.fourSum(nums=[1, 0, -1, 0, -2, 2], target=0))

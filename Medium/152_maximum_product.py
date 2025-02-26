@@ -27,16 +27,18 @@ Constraints:
 -10 <= nums[i] <= 10
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 """
+
+
 # Cubic Solution
 class Solution:
-    def maxProduct(self, nums:list[int]) -> int:
+    def maxProduct(self, nums: list[int]) -> int:
         n = len(nums)
-        global_max = float('-inf')
+        global_max = float("-inf")
 
         for i in range(n):
             for j in range(i, n):
                 local_max = 1
-                for k in range(i, j+1):
+                for k in range(i, j + 1):
                     local_max *= nums[k]
 
                 if local_max > global_max:
@@ -44,11 +46,12 @@ class Solution:
 
         return global_max
 
-#Quadratic Solution
+
+# Quadratic Solution
 class Solution:
-    def maxProduct(self, nums:list[int]) -> int:
+    def maxProduct(self, nums: list[int]) -> int:
         n = len(nums)
-        global_max = float('-inf')
+        global_max = float("-inf")
 
         for i in range(n):
             local_max = 1
@@ -60,10 +63,11 @@ class Solution:
 
         return global_max
 
+
 # Linear Solution
 class Solution:
-    def maxProduct(self, nums:list[int]) -> int:
-        
+    def maxProduct(self, nums: list[int]) -> int:
+
         n = len(nums)
         local_max, local_min, global_max = nums[0], nums[0], nums[0]
 
@@ -72,8 +76,8 @@ class Solution:
             if nums[i] < 0:
                 local_max, local_min = local_min, local_max
 
-            local_max = max(nums[i], local_max*nums[i])
-            local_min = min(nums[i], local_min*nums[i])
+            local_max = max(nums[i], local_max * nums[i])
+            local_min = min(nums[i], local_min * nums[i])
 
             global_max = max(global_max, local_max)
 

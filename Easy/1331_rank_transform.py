@@ -38,12 +38,14 @@ Constraints:
 -109 <= arr[i] <= 109
 """
 
-class Solution:
-    def arrayRankTransform(self, arr: list(int)) -> list(int):
-        sorted_array = sorted(set(arr))
-        return [sorted_array.index(i)+1 for i in arr]
 
 class Solution:
     def arrayRankTransform(self, arr: list(int)) -> list(int):
-        sorted_map = {v: ix+ 1 for ix, v in enumerate(sorted(set(arr)))}
+        sorted_array = sorted(set(arr))
+        return [sorted_array.index(i) + 1 for i in arr]
+
+
+class Solution:
+    def arrayRankTransform(self, arr: list(int)) -> list(int):
+        sorted_map = {v: ix + 1 for ix, v in enumerate(sorted(set(arr)))}
         return list(map(sorted_map.values, arr))

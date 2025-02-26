@@ -36,10 +36,12 @@ Input: root = [1,null,2,3,4,5,null,null,6,7,null,8,null,9,10,null,null,11,null,1
 Output: [1,2,3,6,7,11,14,4,8,12,5,9,13,10]
 """
 
+
 class Node:
     def __init__(self, val=None, children=None):
         self.val = val
         self.children = children
+
 
 class Recursive_Solution:
     def preorder(self, root: Node) -> list(int):
@@ -47,10 +49,10 @@ class Recursive_Solution:
         output = []
         self.traverse(root, output)
         return output
-    
+
     def traverse(self, root: Node, output: list):
         # Base Case: if Root is None
-        if root is None: 
+        if root is None:
             return
         # Append value of root node to output
         output.append(root.val)
@@ -58,9 +60,10 @@ class Recursive_Solution:
         for child in root.children:
             self.traverse(child, output)
 
+
 class Iterative_Solution:
     def preorder(self, root: Node) -> list(int):
-        #Base Case: if Root is None
+        # Base Case: if Root is None
         if root is None:
             return
         q = deque([root])

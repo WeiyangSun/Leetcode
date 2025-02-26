@@ -35,19 +35,22 @@ Constraints:
 1 <= nums[i] <= 104
 """
 
+
 class Solution:
     def maxSum(self, nums: list(int)) -> int:
         total_len = len(nums)
         ans = -1
         for i_pointer in range(total_len):
-            for j_pointer in range(i_pointer+1, total_len):
+            for j_pointer in range(i_pointer + 1, total_len):
                 sum = nums[i_pointer] + nums[j_pointer]
                 if sum < 100 and sum > 10:
                     if (str(sum)[0] == str(sum)[-1]) and sum > ans:
                         ans = sum
         return ans
 
+
 from collections import defaultdict
+
 
 class Solution:
     def maxSum(self, nums: list(int)) -> int:

@@ -16,6 +16,7 @@ Input: nums = [0]
 Output: [[],[0]]
 """
 
+
 class Solution:
     def subsetsWithDup(self, nums: list[int]) -> list[list[int]]:
 
@@ -24,16 +25,16 @@ class Solution:
 
         def backtracking(start, combination):
             result.append(combination.copy())
-            
+
             for i in range(start, len(nums)):
                 # Skip Duplicates
-                if i > start and nums[i] == nums[i-1]:
+                if i > start and nums[i] == nums[i - 1]:
                     continue
 
                 # Explore
                 combination.append(nums[i])
-                backtracking(i+1, combination)
+                backtracking(i + 1, combination)
                 combination.pop()
-        
+
         backtracking(0, [])
         return result

@@ -25,8 +25,9 @@ Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 """
 
+
 class Solution:
-    def maxProfit(self, prices:list[int]) -> int:
+    def maxProfit(self, prices: list[int]) -> int:
         buy_pointer, sell_pointer = 0, 1
         max_profit = 0
 
@@ -40,9 +41,10 @@ class Solution:
 
         return max_profit
 
+
 class Solution:
-    def maxProfit(self, prices:list[int]) -> int:
-        min_price = float('inf')
+    def maxProfit(self, prices: list[int]) -> int:
+        min_price = float("inf")
         max_profit = 0
 
         for i in prices:
@@ -53,17 +55,19 @@ class Solution:
 
         return max_profit
 
+
 class Solution:
-    def maxProfit(self, prices:list[int]) -> int:
+    def maxProfit(self, prices: list[int]) -> int:
         local_max, global_max = 0, 0
 
         for i in range(1, len(prices)):
             # If prices[i] - prices[i-1] > 0, add to local_max to reflect increased profit
             # Else reset local_max to 0
-            local_max = max(0, local_max + prices[i] - prices[i-1])
+            local_max = max(0, local_max + prices[i] - prices[i - 1])
             global_max = max(local_max, global_max)
 
         return global_max
 
+
 sol = Solution()
-print(sol.maxProfit([7,1,5,3,6,4]))
+print(sol.maxProfit([7, 1, 5, 3, 6, 4]))

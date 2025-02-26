@@ -37,18 +37,21 @@ num does not contain any leading zeros except for the zero itself.
 1 <= k <= 104
 """
 
+
 class Solution:
-    def addToArrayForm(self, num:list[int], k:int) -> list[int]:
-        num_int = int(''.join(str(i) for i in num))
+    def addToArrayForm(self, num: list[int], k: int) -> list[int]:
+        num_int = int("".join(str(i) for i in num))
         sum = str(num_int + k)
-        
+
         return [int(i) for i in sum]
 
+
 class Solution:
-    def addToArrayForm(self, num:list[int], k:int) -> list[int]:
-        for i in range(len(num)-1, -1, -1):
-            K, num[i] = divmod(num[i]+K, 10)
+    def addToArrayForm(self, num: list[int], k: int) -> list[int]:
+        for i in range(len(num) - 1, -1, -1):
+            K, num[i] = divmod(num[i] + K, 10)
         return [int(i) for i in str(K)] + num if K else num
 
+
 sol = Solution()
-print(sol.addToArrayForm(num=[1,2,0,0], k=34))
+print(sol.addToArrayForm(num=[1, 2, 0, 0], k=34))

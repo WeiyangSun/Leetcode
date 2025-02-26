@@ -23,14 +23,15 @@ Output: 0
 Explanation: The sum that is closest to the target is 0. (0 + 0 + 0 = 0).
 """
 
+
 class Solution:
-    def threeSumClosest(self, nums:list[int], target:int) -> int:
+    def threeSumClosest(self, nums: list[int], target: int) -> int:
         nums.sort()
         closest_value = nums[0] + nums[1] + nums[2]
         n = len(nums)
 
-        for i in range(n-2):
-            
+        for i in range(n - 2):
+
             left_pointer = i + 1
             right_pointer = n - 1
 
@@ -49,5 +50,6 @@ class Solution:
 
         return closest_value
 
+
 sol = Solution()
-print(sol.threeSumClosest(nums=[-1,2,1,-4], target=1))
+print(sol.threeSumClosest(nums=[-1, 2, 1, -4], target=1))

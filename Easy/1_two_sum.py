@@ -35,37 +35,41 @@ Constraints:
 Only one valid answer exists.
 """
 
+
 class Solution:
-    def twoSum(self, nums:list[int], target:int) -> list[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
 
         for i in range(len(nums)):
             result = target - nums[i]
-            for j in range(len(nums)-1, i, -1):
+            for j in range(len(nums) - 1, i, -1):
                 if nums[j] == result:
                     return [i, j]
 
 
 class Solution:
-    def twoSum(self, nums:list[int], target:int) -> list[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
         dict = {}
         for i in range(len(nums)):
-            dict[target-nums[i]] = dict.get(target-nums[i], i)
+            dict[target - nums[i]] = dict.get(target - nums[i], i)
             if nums[i] in dict and i != dict[nums[i]]:
                 return [i, dict[nums[i]]]
 
+
 sol = Solution()
-print(sol.twoSum(nums=[-3,4,3,90], target=0))
+print(sol.twoSum(nums=[-3, 4, 3, 90], target=0))
+
 
 class Solution:
-    def twoSum(self, nums:list[int], target:int) -> list[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
         for i in range(len(nums)):
             remaining = target - nums[i]
-            if remaining in nums[i+1:]:
-                return[i, nums.index(remaining, i+1)]
+            if remaining in nums[i + 1 :]:
+                return [i, nums.index(remaining, i + 1)]
         return []
-    
+
+
 class Solution:
-    def twoSum(self, nums:list[int], target:int) -> list[int]:
+    def twoSum(self, nums: list[int], target: int) -> list[int]:
         dict = {}
         for i, v in enumerate(nums):
             remaining = target - v
@@ -73,6 +77,7 @@ class Solution:
                 return [dict[remaining], i]
             dict[v] = i
         return []
-            
+
+
 sol = Solution()
-print(sol.twoSum(nums=[2,7,11,15], target=9))
+print(sol.twoSum(nums=[2, 7, 11, 15], target=9))

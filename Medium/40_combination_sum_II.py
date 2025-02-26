@@ -30,34 +30,35 @@ Output:
 ]
 """
 
+
 class Solution:
     def combinationSum2(self, candidates: list[int], target: int) -> list[list[int]]:
-        
+
         candidates.sort()
         result = []
-        
+
         def backtracking(start, current_combination, remaining_target):
-            #Base Success Case
+            # Base Success Case
             if remaining_target == 0:
                 result.append(current_combination.copy())
                 return
-            
-            #Base Failure Case
+
+            # Base Failure Case
             if remaining_target < 0:
                 return
-            
+
             prev = -1
-            #Backtracking
+            # Backtracking
             for i in range(start, len(candidates)):
                 if candidates[i] == prev:
                     continue
-                #1. Choose
+                # 1. Choose
                 current_combination.append(candidates[i])
-                #2. Explore
-                backtracking(i+1, current_combination, remaining_target-candidates[i])
-                #3. Backtrack
+                # 2. Explore
+                backtracking(i + 1, current_combination, remaining_target - candidates[i])
+                # 3. Backtrack
                 current_combination.pop()
                 prev = candidates[i]
-        
+
         backtracking(0, [], target)
         return result

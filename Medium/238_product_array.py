@@ -26,16 +26,18 @@ Constraints:
 -30 <= nums[i] <= 30
 The product of any prefix or suffix of nums is guaranteed to fit in a 32-bit integer.
 """
+
+
 class Solution:
-    def productExceptSelf(self, nums:list[int]) -> list[int]:
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
         pointer_A = 0
         result = []
         while pointer_A < len(nums):
             if pointer_A == 0:
-                selected_array = nums[pointer_A+1:]
+                selected_array = nums[pointer_A + 1 :]
             else:
-                selected_array = nums[:pointer_A] + nums[pointer_A+1:]
-            
+                selected_array = nums[:pointer_A] + nums[pointer_A + 1 :]
+
             num_product = 1
             for i in selected_array:
                 num_product *= i
@@ -44,16 +46,18 @@ class Solution:
 
         return result
 
+
 class Solution:
-    def productExceptSelf(self, nums:list[int]) -> list[int]:
-        n, ans, suffix_product = len(nums), [1]*len(nums), 1
-        
+    def productExceptSelf(self, nums: list[int]) -> list[int]:
+        n, ans, suffix_product = len(nums), [1] * len(nums), 1
+
         for i in range(1, n):
-            ans[i] = ans[i-1]*nums[i-1]
-        for i in range(n-1, -1, -1):
+            ans[i] = ans[i - 1] * nums[i - 1]
+        for i in range(n - 1, -1, -1):
             ans[i] *= suffix_product
             suffix_product *= nums[i]
         return ans
 
+
 sol = Solution()
-print(sol.productExceptSelf(nums=[1,2,3,4]))
+print(sol.productExceptSelf(nums=[1, 2, 3, 4]))

@@ -21,15 +21,16 @@ Output: false
 Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.
 """
 
+
 class Solution:
     def canJump(self, nums: list[int]) -> bool:
         maxReach = 0
-        
+
         for i, jump_length in enumerate(nums):
             if i > maxReach:
                 return False
-            
-            maxReach = max(maxReach, i+jump_length)
+
+            maxReach = max(maxReach, i + jump_length)
             if maxReach >= len(nums) - 1:
                 return True
 
