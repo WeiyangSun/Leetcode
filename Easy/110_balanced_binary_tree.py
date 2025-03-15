@@ -18,15 +18,17 @@ Input: root = []
 Output: true
 """
 
+
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
         self.val = val
         self.left = left
         self.right = right
 
+
 class Solution:
     def isBalanced(self, root: list[TreeNode]) -> bool:
-        
+
         def check_height(node):
             # Base Case
             if not node:
@@ -47,5 +49,5 @@ class Solution:
                 return -1
 
             return max(left_height, right_height) + 1
-    
+
         return check_height(root) != -1

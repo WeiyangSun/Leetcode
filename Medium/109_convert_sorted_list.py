@@ -17,10 +17,12 @@ Input: head = []
 Output: []
 """
 
+
 class ListNode:
     def __init__(self, val=0, next=None):
         self.val = val
         self.next = next
+
 
 class TreeNode:
     def __init__(self, val=0, left=None, right=None):
@@ -28,9 +30,10 @@ class TreeNode:
         self.left = left
         self.right = right
 
+
 class Solution:
     def sortedListToBST(self, head: list[ListNode]) -> [TreeNode]:
-        
+
         def findMiddleNode(start):
             prev = None
             slow = start
@@ -42,7 +45,7 @@ class Solution:
                 slow = slow.next
                 fast = fast.next.next
 
-            if prev: # If prev is not None
+            if prev:  # If prev is not None
                 prev.next = None
 
             return slow
@@ -50,13 +53,13 @@ class Solution:
         # Base Case
         if not head:
             return None
-        if not head.next: # only has 1 value
+        if not head.next:  # only has 1 value
             return TreeNode(head.val)
 
         mid = findMiddleNode(head)
 
         root = TreeNode(mid.val)
-        
+
         root.left = self.sortedListToBST(head)
         root.right = self.sortedListToBST(mid.next)
 
