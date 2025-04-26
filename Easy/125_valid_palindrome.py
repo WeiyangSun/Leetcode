@@ -83,3 +83,21 @@ class ConstantSolution:
             # When encountering non-alphanumeric types, this line helps to skip it
             i, j = i + (not a.isalnum()), j - (not b.isalnum())
         return True
+
+class ConstantSolution:
+    def is_palindrome(self, s: str) -> bool:
+        left_pointer, right_pointer = 0, len(s)-1
+
+        while left_pointer < right_pointer:
+            while left_pointer < right_pointer and not s[left_pointer].isalnum():
+                left_pointer += 1
+            while left_pointer < right_pointer and not s[right_pointer].isalum():
+                right_pointer -= 1
+
+            if s[left_pointer].lower() != s[right_pointer].lower():
+                return False
+            
+            left_pointer += 1
+            right_pointer += 1
+
+        return True
