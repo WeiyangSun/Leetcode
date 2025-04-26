@@ -32,3 +32,23 @@ class TreeNode:
 
 class Solution:
     def maxPathSum(self, root: [TreeNode]) -> int:
+        self.best = float('-inf')
+
+        def dfs(node: Optional[TreeNode]) -> int:
+            if not node:
+                return 0
+
+            # Get trail
+            left_gain = max(dfs(node.left), 0)
+            right_gain = max(dfs(node.right), 0)
+
+            # Connect path
+            path = node.val + left_gain + right_gain
+
+            # Update best
+            self.best = max(self.best, path)
+
+            return node.val + max(left_gain, right_gain)
+
+        dfs(root)
+        return self.best
