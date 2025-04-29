@@ -98,6 +98,6 @@ class ConstantSolution:
                 return False
             
             left_pointer += 1
-            right_pointer += 1
+            right_pointer -= 1
 
         return True
