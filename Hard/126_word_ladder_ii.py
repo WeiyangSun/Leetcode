@@ -60,3 +60,43 @@ class Solution:
             layer = new_layer
 
         return []
+
+
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        wordSet = set(wordList)
+        if endWord not in wordSet:
+            return []
+
+        layer = {beginWord}
+        prevs = defaultdict(set)
+        found = False
+
+        while layer and not found:
+            wordSet -= layer
+            nextLayer = set()
+
+            for word in layer:
+                for i in range(len(word)):
+                    prefix, suffix = word[:i], word[i+1:]
+                    for char in "abcdefghijklmnopqrstuvwxyz":
+                        neighbor = prefix + char + suffix
+                        if neighbor in wordSet:
+                            nextLayer.add(neighbor)
+                            prevs[neighbor].add(word)
+                            if neighbor == endWord:
+                                found = True
+
+            layer = nextLayer
+
+        def dfs(path: List[str], cur: str):
+            if cur == beginWord:
+                results.append(path[::-1])
+                return
+            for parent in prevs[cur]:
+                dfs(path + [parent], parent)
+
+        results = []
+        if found:
+            dfs([endWord], endWord)
+        return results
