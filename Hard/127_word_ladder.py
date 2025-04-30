@@ -57,7 +57,7 @@ class Solution:
                 bucket = word[:i] + '*' + word[i+1:]
                 for neighbor in graph[bucket]:
                     if neighbor not in visited:
-                        visited.append(neighbor)
+                        visited.add(neighbor)
                         queue.append((neighbor, dist+1))
                 graph[bucket].clear()
 
