@@ -67,3 +67,32 @@ class Solution:
                 dp[row][col] = match_s1 or match_s2
 
         return dp[len(s1)][len(s2)]
+
+
+class Solution:
+    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
+        m, n, l = len(s1), len(s2), len(s3)
+        if m + n != l:
+            return False
+
+        if m < n:
+            return self.isInterleave(s2, s1, s3)
+
+        dp = [False]*(n+1)
+        dp[0] = True
+
+        # Iterating through s2 and updating array
+        for j in range(1, n+1):
+            dp[j] = dp[j-1] and s2[j-1] == s3[j-1]
+        # Iterating through s1 and updating array
+        # Logic:
+        # For each character in s1, iterate through s2 and update the dp array based on the transition rule:
+        # dp[j] = (dp[j] and s1[i] == s3[i+j]) or (dp[j-1] and s2[j] == s3[i+j]).
+        # The transition rule checks if the current s3[i+j] can be matched by either s1[i] or s2[j],
+        # relying solely on the previous values in the dp array.
+        for i in range(1, m+1):
+            dp[0] = dp[0] and s1[i-1] == s3[i-1]
+            for j in range(1, n+1):
+                dp[j] = (dp[j] and s1[i-1] == s3[i+j-1]) or (dp[j-1] and s2[j-1] == s3[i+j-1])
+
+        return dp[n]

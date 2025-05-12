@@ -49,3 +49,30 @@ class Solution:
                         queue.append((neighbor_row, neighbor_col, steps + 1, neighbor_elimination))
 
         return -1
+
+
+class Solution:
+    def shortestPath(self, grid: List[List[int]], k: int) -> int:
+        rows, cols = len(grid), len(grid[0])
+        target = (rows-1, cols-1)
+        queue = deque([(0, 0, 0, k)]) #row, col, steps, elimination_left
+        visited = set([(0, 0, k)]) #row, col, elimination_left
+        direction_array = [(-1,0), (1,0), (0,1), (0,-1)]
+
+        while queue:
+            row, col, steps, elimnation_left = queue.popleft()
+            if (row, col, elimnation_left) in visited or elimnation_left < 0:
+                continue
+            if (row, col) == target:
+                return steps
+
+            visited.add((row, col, elimnation_left))
+            if grid[row][col] == 1:
+                elimnation_left -= 1
+
+            for dx, dy in direction_array:
+                new_row, new_col = row+dx, col+dy
+                if 0 <= new_row < rows and 0 <= new_col < cols:
+                    queue.append((new_row, new_col, steps+1, elimnation_left))
+
+        return -1

@@ -45,3 +45,25 @@ class Solution:
                 secondList_pointer += 1
 
         return result
+
+
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        result = []
+        firstList_pointer = secondList_pointer = 0
+
+        while firstList_pointer < len(firstList) and secondList_pointer < len(secondList):
+            a1 = firstList[firstList_pointer]
+            b1 = secondList[secondList_pointer]
+
+            interval_start = max(a1[0], b1[0])
+            interval_end = min(a1[1], b1[1])
+
+            if interval_start <= interval_end:
+                result.append([interval_start, interval_end])
+            if a1[1] < b1[1]:
+                firstList_pointer += 1
+            else:
+                secondList_pointer += 1
+
+        return result
