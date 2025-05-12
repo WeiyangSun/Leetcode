@@ -28,6 +28,23 @@ movingAverage.next(5); // return 6.0 = (10 + 3 + 5) / 3
 from collections import deque
 
 class MovingAverage:
+    def __init__(self, size: int):
+        self.size = size
+        self.window = deque()
+        self.sum = 0
+
+    def next(self, val: int) -> float:
+        if len(self.window) < self.size:
+            self.window.append(val)
+            self.sum += val
+        else:
+            self.sum -= self.window.popleft()
+            self.queue.append(val)
+            self.sum += val
+        return self.sum / len(self.window)
+
+
+class MovingAverage:
 
     def __init__(self, size: int):
 

@@ -69,3 +69,32 @@ class Solution:
             max_count = max(max_count, right_pointer - left_pointer + 1)
 
         return max_count + same_location_count
+
+
+class Solution:
+    def visiblePoints(self, points: List[List[int]], angle: int, location: List[int]) -> int:
+
+        initial_length = len(points)
+        non_location_points = [point for point in points if point != location]
+        location_points = initial_length - non_location_points
+
+        angles = []
+        for point in non_location_points:
+            dx, dy = point[0] - location[0], point[1] - location[1]
+            theta = math.atan2(dy, dx)*(180/math.pi)
+            if theta < 0:
+                theta += 360
+            angles.append(theta)
+        angles.sort()
+
+        # Circular Wrap-around
+        angles.extend([a+360 for a in angles])
+
+        observable_points_count = 0
+        left_pointer = 0
+        for right_pointer in range(len(angles)):
+            while angles[right_pointer] - angles[left_pointer] > angle:
+                left_pointer += 1
+            observable_points_count = max(observable_points_count, right_pointer - left_pointer + 1)
+
+        return location_points + observable_points_count
