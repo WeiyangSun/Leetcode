@@ -106,16 +106,4 @@ class Solution:
             return ways
 
         # counts every way the digits can be dropped into slots
-        initial_ways = dfs(0, half_total, odd_slots, even_slots)
-
-        duplication_denominator = 1
-        # This will only increment if you have digits with more than 1 frequency
-        for c in count:  # using a modulus—keeping numbers tiny and runtime quick
-            duplication_denominator = duplication_denominator * factorial(c) % MOD
-
-        # Fermat Inverse - need this because duplication_denominator has been MOD and initial_ways has been MOD
-        inverse_duplication = pow(
-            duplication_denominator, MOD - 2, MOD
-        )  # inverse_duplication is the number that makes duplication_denominator * inverse_duplication = 1
-        # once you’ve stepped into modular arithmetic, “divide” is performed by multiplying with the modular inverse, not by the / operator.
-        return initial_ways * inverse_duplication % MOD
+        return dfs(0, half_total, odd_slots, even_slots)
