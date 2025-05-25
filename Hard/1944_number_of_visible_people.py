@@ -37,7 +37,7 @@ class Solution:
     def canSeePersonsCount(self, heights: List[int]) -> List[int]:
         # holds heights of people to the right always in strictly decreasing order
         stack = []
-        result = []
+        result = [0] * len(heights)
 
         # starting from right to left
         for i in range(len(heights) - 1, -1, -1):
