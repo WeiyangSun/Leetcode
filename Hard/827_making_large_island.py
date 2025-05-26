@@ -45,7 +45,7 @@ class Solution:
             labels[row][col] = island_id
             area = 1
             for delta_row, delta_col in direction_array:
-                area += dfs(row + delta_row, col + delta_col)
+                area += dfs(row + delta_row, col + delta_col, island_id)
             return area
 
         for i in range(n):

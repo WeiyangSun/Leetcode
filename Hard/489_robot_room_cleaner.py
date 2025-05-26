@@ -58,7 +58,7 @@ class Solution:
         direction_array = [(-1,0), (0,1), (1,0), (0,-1)]
         visited = set()
 
-        def go_back():
+        def backing_out():
             robot.turnRight()
             robot.turnRight()
             robot.move()
@@ -78,7 +78,7 @@ class Solution:
                 if (new_x, new_y) not in visited:
                     if robot.move():
                         dfs(new_x, new_y, new_direction_idx)
-                        go_back()
+                        backing_out()
                 robot.turnRight()
 
         dfs(0, 0, 0)
