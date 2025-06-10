@@ -44,6 +44,11 @@ class RandomizedSet:
         self.randomizedset_dict[val] = len(self.values) - 1 # map value to index
         return True
 
+
+    # Swap-and-Pop trick.
+    # Removing something in the middle of an array is slow—unless you cheat:
+    # swap the unwanted item with the last item, update the shelf number in Bucket #1 for that last item,
+    # then pop the tail off. Voilà—constant time.
     def remove(self, val: int) -> bool:
         if val not in self.randomizedset_dict:
             return False # if value doesn't exist, removal fails
