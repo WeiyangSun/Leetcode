@@ -26,6 +26,28 @@ Output: 44
 """
 
 from typing import List
+import math
+
 
 class Solution:
     def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+
+        def compute_sum(divisor):
+            total = 0
+            for num in nums:
+                total += math.ceil(num / divisor)  # given a divisor, divide all num and get total
+            return total
+
+        left_pointer, right_pointer = 1, max(nums)
+        result = right_pointer
+
+        while left_pointer <= right_pointer:
+            mid_pointer = (right_pointer + left_pointer) // 2
+            current_sum = compute_sum(mid_pointer)
+            if current_sum <= threshold:  # if mid pointer works, record it and try smaller
+                result = mid_pointer
+                right_pointer = mid_pointer - 1
+            else:
+                left_pointer = mid_pointer + 1
+
+        return result
