@@ -39,7 +39,7 @@ class Solution:
 
         for idx, num in enumerate(nums):
             # update running sum -> step forward on 1 and step backwards on 0
-            running_sum = +1 if num == 1 else -1
+            running_sum += 1 if num == 1 else -1
 
             if running_sum in first_seen_map:
                 current_length = idx - first_seen_map[running_sum]
