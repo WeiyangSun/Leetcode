@@ -31,37 +31,39 @@ class Solution:
         n = len(nums)
 
         # pre-compute sum of every k-length window
-        window = [0] * (n - k + 1)  # rolling sum
+        window_sum = [0] * (n - k + 1)  # rolling sum
         cur_window = sum(nums[:k])
-        window[0] = cur_window
+        window_sum[0] = cur_window
         for i in range(1, n - k + 1):
+            # you can use a sliding window instead however it would result in O(k)
+            # whereas this remains at O(1) since it is just adding and subtracting
             cur_window += nums[i + k - 1] - nums[i - 1]
-            window[i] = cur_window
+            window_sum[i] = cur_window
 
-        # left-to-right: where is the best window that we already passed
-        left_best = [0] * len(window)
-        best = 0
-        for i in range(len(window)):
-            if window[i] > window[best]:
-                best = i
-            left_best[i] = best
+        # moving from left-to-right: this is the earliest index that contains the highest sum
+        left_best_indices = [0] * len(window_sum)
+        left_best = 0
+        for i in range(len(window_sum)):
+            if window_sum[i] > window_sum[left_best]:
+                left_best = i
+            left_best_indices[i] = left_best
 
-        # right-to-left: where is the best window that we will still meet
-        right_best = [0] * len(window)
-        best = len(window) - 1
-        for i in range(len(window) - 1, -1, -1):
-            if window[i] >= window[best]:
-                best = i
-            right_best[i] = best
+        # moving from right-to-left: this is the earliest index that contains the highest sum
+        right_best_indices = [0] * len(window_sum)
+        right_best = len(window_sum) - 1
+        for i in range(len(window_sum) - 1, -1, -1):
+            if window_sum[i] >= window_sum[right_best]:
+                right_best = i
+            right_best_indices[i] = right_best
 
-        # sweep every valid middle window and glue trio together
+        # sweep every valid middle window and sum trio together before comparing to find global max
         max_total = -1
         answer = None
-        for mid in range(k, len(window) - k):
-            left = left_best[mid - k]
-            right = right_best[mid + k]
-            total = window[left] + window[mid] + window[right]
+        for mid in range(k, len(window_sum) - k):
+            left_idx = left_best_indices[mid - k]
+            right_idx = right_best_indices[mid + k]
+            total = window_sum[left_idx] + window_sum[mid] + window_sum[right_idx]
             if total > max_total:
                 max_total = total
-                answer = [left, mid, right]
+                answer = [left_idx, mid, right_idx]
         return answer
