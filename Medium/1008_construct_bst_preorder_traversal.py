@@ -54,3 +54,31 @@ class Solution:
 
         self.i = 0
         return build()
+
+
+class Solution:
+    def bstFromPreorder(self, preorder: List[int]) -> Optional[TreeNode]:
+
+        idx = 0  # used to keep track of current index in preorder list
+
+        def helper(lower, upper):
+            nonlocal idx
+            # if all nodes are processed, return None
+            if idx == len(preorder):
+                return None
+
+            val = preorder[idx]
+            # if val is outside of bounds, then it doesn't belong in this subtree
+            if val < lower or val > upper:
+                return None
+
+            idx += 1
+            # This utilizes preorder traversal
+            root = TreeNode(val)
+            # using the lower and upper bounds utilizes BST properties
+            root.left = helper(lower, val - 1)  # left subtree must be < val
+            root.right = helper(val + 1, upper)  # right subtree must be > val
+
+            return root
+
+        return helper(float("-inf"), float("inf"))
